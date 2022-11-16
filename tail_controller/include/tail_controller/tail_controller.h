@@ -58,6 +58,14 @@ class TailController {
 
   double pitch_kd_;
 
+  double ff_torque_1;
+
+  double ff_torque_2;
+
+  double time_1;
+
+  double time_2;
+
   ros::Publisher tail_control_pub_;
 
   ros::Subscriber tail_plan_sub_;

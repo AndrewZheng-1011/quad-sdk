@@ -36,6 +36,7 @@ SOFTWARE.
   <arg name="rotors" default="false" />
   <arg name="tail" default="false" />
   <arg name="tail_type" default="0" />
+  <arg name="dira" default="true" />
   <arg name="x_init" default="6.0" />
 
   <param name="tail_controller/tail_type" value="$(arg tail_type)" />
@@ -88,10 +89,18 @@ SOFTWARE.
   </group>
   <group unless="$(arg rotors)">
     <group if="$(arg tail)">
-      <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_tail_2.urdf" /> <!-- Original: spirit_tail.urdf -->
-      <!-- <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_meshes_tail.urdf" /> -->
-      <param name="robot_description_sdf" textfile="$(find spirit_description)/sdf_mesh/spirit_tail_2.sdf" /> <!-- Original: spirit_tail.sdf -->
-      <rosparam file="$(find gazebo_scripts)/config/spirit_control_tail_dira.yaml" command="load" /> <!-- Original: spirit_control_tail.yaml -->
+      <group if="$(arg dira)">
+        <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_tail_1.urdf" /> <!-- Original: spirit_tail.urdf -->
+        <!-- <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_meshes_tail.urdf" /> -->
+        <param name="robot_description_sdf" textfile="$(find spirit_description)/sdf_mesh/spirit_tail_1.sdf" /> <!-- Original: spirit_tail.sdf -->
+        <rosparam file="$(find gazebo_scripts)/config/spirit_control_tail_dira.yaml" command="load" /> <!-- Original: spirit_control_tail.yaml -->
+      </group>
+      <group unless="$(arg dira)">
+        <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_tail.urdf" /> <!-- Original: spirit_tail.urdf -->
+        <!-- <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_meshes_tail.urdf" /> -->
+        <param name="robot_description_sdf" textfile="$(find spirit_description)/sdf_mesh/spirit_tail.sdf" /> <!-- Original: spirit_tail.sdf -->
+        <rosparam file="$(find gazebo_scripts)/config/spirit_control_tail.yaml" command="load" /> <!-- Original: spirit_control_tail.yaml -->
+      </group>
     </group>
     <group unless="$(arg tail)">
       <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit.urdf" /> <!-- Original spirit.urdf --> <!-- URDF for rviz -->

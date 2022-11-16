@@ -120,7 +120,7 @@ bool SpiritController::init(
       ros::TransportHints().tcpNoDelay(true));
 
   // HERE AZ: This would be changed
-  int num_tail_motors = 2;  // Change here | Original: 2
+  int num_tail_motors = 1;  // Change here | Original: 2
   tail_commands_buffer_.writeFromNonRT(TailBufferType(num_tail_motors));
   // std::cout << "Initialized tail command buffer..." << std::endl;
 

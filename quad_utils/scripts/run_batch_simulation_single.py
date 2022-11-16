@@ -8,12 +8,13 @@ import sys
 world_index = int(sys.argv[1])
 batch_index = int(sys.argv[2])
 type_index = int(sys.argv[3])
+dira_version = sys.argv[4]  # Enable simple version (DIRA spirit) or CMU spirit
 
 print("world index: %d, batch_index: %d, type_index: %d" %
       (world_index, batch_index, type_index))
 
 vel = 1.0
-period = 0.36
+period = 0.48  # Original 0.36
 num = 100
 time_init = 3.5/4*10 * 2  # Change this if sim too long to run
 time_stand = 7.5/4*10
@@ -25,16 +26,18 @@ world = ['world:=step_25cm', 'world:=step_30cm', 'world:=step_35cm', 'world:=ste
 np.random.seed(0)
 
 # init pose calculation s.t. they can ensure they fall
-init_pos = np.linspace(-vel*period/2, vel*period/2,
-                       num, endpoint=False) + 6.0
+# init_pos = np.linspace(-vel*period/2, vel*period/2,
+#                       num, endpoint=False) + 6.0  # vector of x init positions
 
+init_pos = np.linspace(-vel*period/2, vel*period/2,
+                       num, endpoint=False) + 5.0  # vector of x init positions
 
 if type_index == 0:
     # Leg
     uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
     roslaunch.configure_logging(uuid)
 
-    launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true', 'gui:=true',
+    launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true', 'gui:=true', 'dira:=' + dira_version,
                    world[world_index], 'x_init:='+str(init_pos[batch_index])]
     launch_pars = [(roslaunch.rlutil.resolve_launch_arguments(
         launch_args)[0], launch_args[2:])]
@@ -75,7 +78,7 @@ elif type_index == 1:
     uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
     roslaunch.configure_logging(uuid)
 
-    launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true',  'gui:=true',
+    launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true',  'gui:=true', 'dira:=' + dira_version,
                    world[world_index], 'tail:=true', 'tail_type:=2', 'x_init:='+str(init_pos[batch_index])]
     launch_pars = [(roslaunch.rlutil.resolve_launch_arguments(
         launch_args)[0], launch_args[2:])]
@@ -115,7 +118,7 @@ elif type_index == 2:
     uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
     roslaunch.configure_logging(uuid)
 
-    launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true',
+    launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true', 'gui:=true', 'dira:=' + dira_version,
                    world[world_index], 'tail:=true', 'tail_type:=3', 'x_init:='+str(init_pos[batch_index])]
     launch_pars = [(roslaunch.rlutil.resolve_launch_arguments(
         launch_args)[0], launch_args[2:])]
@@ -158,7 +161,7 @@ elif type_index == 3:
     uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
     roslaunch.configure_logging(uuid)
 
-    launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true',
+    launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true', 'gui:=true', 'dira:=' + dira_version,
                    world[world_index], 'tail:=true', 'tail_type:=4', 'x_init:='+str(init_pos[batch_index])]
     launch_pars = [(roslaunch.rlutil.resolve_launch_arguments(
         launch_args)[0], launch_args[2:])]

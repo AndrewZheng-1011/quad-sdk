@@ -179,8 +179,8 @@ void QuadEstimatorGroundTruth::OnUpdate() {
       model_joint_name.push_back(joint->GetName());
     }
 
-    state.tail_joints.name = {"body_tail_joint_0", "body_tail_joint_1"};
-    // state.tail_joints.name = {"body_tail_joint_0"};
+    // state.tail_joints.name = {"body_tail_joint_0", "body_tail_joint_1"};
+    state.tail_joints.name = {"body_tail_joint_0"};
 
     // With tail
     for (size_t i = 0; i < state.tail_joints.name.size(); i++) {

@@ -51,6 +51,18 @@ TailController::TailController(ros::NodeHandle nh) {
   quad_utils::loadROSParam(nh_, "tail_controller/" + param_ns_ + "/pitch_kd",
                            pitch_kd_);
 
+  // Extra params from open loop tail
+  if (param_ns_ == "open_loop_tail") {
+    quad_utils::loadROSParam(
+        nh_, "tail_controller/" + param_ns_ + "/ff_torque_1", ff_torque_1);
+    quad_utils::loadROSParam(
+        nh_, "tail_controller/" + param_ns_ + "/ff_torque_2", ff_torque_2);
+    quad_utils::loadROSParam(nh_, "tail_controller/" + param_ns_ + "/time_1",
+                             time_1);
+    quad_utils::loadROSParam(nh_, "tail_controller/" + param_ns_ + "/time_2",
+                             time_2);
+  }
+
   // Setup pubs and subs
   tail_control_pub_ =
       nh_.advertise<quad_msgs::LegCommand>(tail_control_topic, 1);
@@ -91,6 +103,7 @@ void TailController::publishTailCommand() {
   // TODO(AZ): WORK ON OPEN LOOP CONTROL
   // SEEMS LIKE UNDERSTANDING THE STATE HERE IS THE BEST WAY
   // CAN WORK WITH THIS
+  // SOMEHOW GET THE SIM_TIME AND EXECUTE DURING SIM TIME WHEN FALLING
   if (param_ns_ == "decentralized_tail") {
     // Feedback tail
     ROS_WARN_ONCE("DECENTRALIZED TAIL FB CONTROL");
@@ -110,20 +123,60 @@ void TailController::publishTailCommand() {
   } else if (param_ns_ == "open_loop_tail") {
     // Open Loop Tail
     ROS_WARN_ONCE("OPENLOOP TAIL");
+    ROS_WARN_THROTTLE(0.25, "Pos setpoint %0.2f", -current_state_(3));
+    ROS_WARN_THROTTLE(0.25, "time: %0.2f", ros::Time::now().toSec());
+
     msg.motor_commands.at(0).pos_setpoint =
         -current_state_(3);  // Original: -current_state_(3);
-    ROS_WARN_THROTTLE(0.25, "Pos setpoint %0.2f",
-                      msg.motor_commands.at(0).pos_setpoint);
     msg.motor_commands.at(0).vel_setpoint = 5 * current_state_(9);
     msg.motor_commands.at(0).torque_ff = 0;
     msg.motor_commands.at(0).kp = roll_kp_;
     msg.motor_commands.at(0).kd = roll_kd_;
-    // TODO(AZ): Make this robust depending on number of tail joints
     msg.motor_commands.at(1).pos_setpoint = -current_state_(4);
     msg.motor_commands.at(1).vel_setpoint = 5 * current_state_(10);
     msg.motor_commands.at(1).torque_ff = 0;
     msg.motor_commands.at(1).kp = pitch_kp_;
     msg.motor_commands.at(1).kd = pitch_kd_;
+
+    if (ros::Time::now().toSec() > time_1 &&
+        ros::Time::now().toSec() < (time_1 + 0.20)) {
+      double ff_torque_param1 = ff_torque_1;
+      double ff_torque_param2 = 0;
+      ROS_WARN("FF TORQUE of %0.2f", ff_torque_param1);
+      msg.motor_commands.at(0).torque_ff = ff_torque_param1;
+      msg.motor_commands.at(1).torque_ff = ff_torque_param2;
+
+      msg.motor_commands.at(0).pos_setpoint = 0;
+      msg.motor_commands.at(0).vel_setpoint = 0;
+      msg.motor_commands.at(0).kp = 0;
+      msg.motor_commands.at(0).kd = 0;
+      // TODO(AZ): Make this robust depending on number of tail joints
+      // Seems like no need... works anyways... idk why & don't need to figure
+      // out for this project
+      msg.motor_commands.at(1).pos_setpoint = 0;
+      msg.motor_commands.at(1).vel_setpoint = 0;
+      msg.motor_commands.at(1).kp = 0;
+      msg.motor_commands.at(1).kd = 0;
+    }
+
+    if (ros::Time::now().toSec() > time_2 &&
+        ros::Time::now().toSec() < (time_2 + 0.20)) {
+      double ff_torque_param1 = 0;
+      double ff_torque_param2 = ff_torque_2;
+      ROS_WARN("FF TORQUE of %0.2f", ff_torque_param2);
+      msg.motor_commands.at(0).torque_ff = ff_torque_param1;
+      msg.motor_commands.at(1).torque_ff = ff_torque_param2;
+
+      msg.motor_commands.at(0).pos_setpoint = 0;
+      msg.motor_commands.at(0).vel_setpoint = 0;
+      msg.motor_commands.at(0).kp = 0;
+      msg.motor_commands.at(0).kd = 0;
+      // TODO(AZ): Make this robust depending on number of tail joints
+      msg.motor_commands.at(1).pos_setpoint = 0;
+      msg.motor_commands.at(1).vel_setpoint = 0;
+      msg.motor_commands.at(1).kp = 0;
+      msg.motor_commands.at(1).kd = 0;
+    }
   } else if (last_tail_plan_msg_ == NULL) {
     // No tail plan yet
     msg.motor_commands.at(0).pos_setpoint = 0;

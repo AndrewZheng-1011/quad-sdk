@@ -18,3 +18,7 @@ tail_controller:
     roll_kd: 1
     pitch_kp: 10
     pitch_kd: 1
+    ff_torque_1: 20
+    ff_torque_2: -15
+    time_1: 4.50 #4.75 # Set this to negative to have no ff_torque
+    time_2: 5.3 #5.00 # Set this to negative to have no ff_torque
