@@ -137,6 +137,10 @@ bool SpiritController::init(
   // Retrieve indicated parameter value from the param server & store it, else
   // use default value
   n.param<int>("/tail_controller/tail_type", tail_type_, 0);
+  quad_utils::loadROSParam(n, "/tail_controller/tail_num", tail_num_);
+  if (tail_num_ > 2) {
+    ROS_ERROR_STREAM("Invalid tail number... Availabe tail num are 1 or 2");
+  }
 
   std::cout << "FINISH INITIALIZING CONTROLLER" << std::endl;
   return true;

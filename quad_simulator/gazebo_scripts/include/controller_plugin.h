@@ -54,6 +54,7 @@ class SpiritController : public controller_interface::Controller<
   std::vector<double> torque_lims_;
 
   int tail_type_;
+  int tail_num_;
 
   void commandCB(const quad_msgs::LegCommandArrayConstPtr& msg);
   void tailCommandCB(const quad_msgs::LegCommandConstPtr& msg);

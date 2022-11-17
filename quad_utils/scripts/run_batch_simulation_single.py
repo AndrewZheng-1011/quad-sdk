@@ -4,11 +4,33 @@ import rospy
 import numpy as np
 import sys
 
+# Example to run this
+# Run ./run_batch_simulation_single 11 40 3 true 2  '30.0' '-30.0' '5.0' '5.2'
+# Generally: ./run_batch_simulation_single world_index batch_index type_index dira_version tail_num 'ff_torque_1' 'ff_torque_2' 'time_1' 'time_2'
+
 
 world_index = int(sys.argv[1])
 batch_index = int(sys.argv[2])
 type_index = int(sys.argv[3])
-dira_version = sys.argv[4]  # Enable simple version (DIRA spirit) or CMU spirit
+# Enable simple version (DIRA spirit) or CMU spirit | true or false
+
+if len(sys.argv) > 4:
+    dira_version = sys.argv[4]
+    tail_num = int(sys.argv[5])  # 1 or 2 tails
+else:
+    dira_version = 'false'
+    tail_num = '2'
+
+if len(sys.argv) > 6:
+    ff_torque_1 = sys.argv[6]
+    ff_torque_2 = sys.argv[7]
+    time_1 = sys.argv[8]
+    time_2 = sys.argv[9]
+else:
+    ff_torque_1 = '30'
+    ff_torque_2 = '-45'
+    time_1 = '4.75'
+    time_2 = '5.00'
 
 print("world index: %d, batch_index: %d, type_index: %d" %
       (world_index, batch_index, type_index))
@@ -79,7 +101,7 @@ elif type_index == 1:
     roslaunch.configure_logging(uuid)
 
     launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true',  'gui:=true', 'dira:=' + dira_version,
-                   world[world_index], 'tail:=true', 'tail_type:=2', 'x_init:='+str(init_pos[batch_index])]
+                   world[world_index], 'tail:=true', 'tail_type:=2', 'tail_num:=' + tail_num, 'x_init:='+str(init_pos[batch_index])]
     launch_pars = [(roslaunch.rlutil.resolve_launch_arguments(
         launch_args)[0], launch_args[2:])]
     launch = roslaunch.parent.ROSLaunchParent(uuid, launch_pars)
@@ -119,7 +141,7 @@ elif type_index == 2:
     roslaunch.configure_logging(uuid)
 
     launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true', 'gui:=true', 'dira:=' + dira_version,
-                   world[world_index], 'tail:=true', 'tail_type:=3', 'x_init:='+str(init_pos[batch_index])]
+                   world[world_index], 'tail:=true', 'tail_type:=3', 'tail_num:=' + tail_num, 'x_init:='+str(init_pos[batch_index])]
     launch_pars = [(roslaunch.rlutil.resolve_launch_arguments(
         launch_args)[0], launch_args[2:])]
     launch = roslaunch.parent.ROSLaunchParent(uuid, launch_pars)
@@ -158,11 +180,14 @@ elif type_index == 2:
 
 elif type_index == 3:
     # Feedback Tail
+    print(str(init_pos[batch_index]))
     uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
     roslaunch.configure_logging(uuid)
 
-    launch_args = ['quad_utils', 'quad_gazebo.launch', 'paused:=false', 'rviz_gui:=true', 'gui:=true', 'dira:=' + dira_version,
-                   world[world_index], 'tail:=true', 'tail_type:=4', 'x_init:='+str(init_pos[batch_index])]
+    launch_args = ['quad_utils', 'quad_gazebo_dira.launch', 'paused:=false', 'rviz_gui:=true', 'gui:=true', 'dira:=' + dira_version,
+                   world[world_index], 'tail:=true', 'tail_type:=4', 'tail_num:=' +
+                   str(tail_num), 'x_init:='+str(init_pos[batch_index]),
+                   'param_ff_torque_1:='+ff_torque_1, 'param_ff_torque_2:='+ff_torque_2, 'param_time_1:='+time_1, 'param_time_2:='+time_2]
     launch_pars = [(roslaunch.rlutil.resolve_launch_arguments(
         launch_args)[0], launch_args[2:])]
     launch = roslaunch.parent.ROSLaunchParent(uuid, launch_pars)

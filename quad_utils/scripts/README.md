@@ -20,11 +20,29 @@ roslaunch quad_utils quad_gazebo.launch tail:=true tail_type:=1
 roslaunch quad_utils standing.launch
 ```
 
-## Run Double Pendulum Quadruped Tail Control Scheme
+## Run Double Pendulum Quadruped Sequential Open Loop Tail Control
 ```
 roscd quad_utils/scripts
-./run_batch_simulation_single.py <env_type> <batch_num> 3
+./run_batch_simulation_single.py <env_type> <batch_num> 3 true <tail_num> <ff_torque_1> <ff_torque_2> <time_1> <time_2>
 ```
+
+where:
+- env_type is the environments with different elevation ranging from 0-11 (0 lowest, 11 highest)
+- batch_num is the batch it is ran (a way to keep up with the file)
+- 3 is to run sequential open loop tail control
+- true: To run the dira setup (i.e. double pendulum tails)
+- tail_num: Number of tail link (range is 1-2)
+- ff_torque_1: The first open loop torque
+- ff_torque_2: The second open loop torque
+- time_1: ros time to execute ff_torque_1
+- time_2: ros time to execute ff_torque_2
+
+## Run script to run batches of Sequential Open Loop Tail Control
+
+```
+./run_batch_simulation_dira.py
+```
+
 
 
 # TODO

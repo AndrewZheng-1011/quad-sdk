@@ -41,6 +41,8 @@ void QuadEstimatorGroundTruth::Load(physics::ModelPtr _parent,
 
   // Load tail type
   quad_utils::loadROSParam(nh, "/tail_controller/tail_type", tail_type_);
+  // Load number of tail
+  quad_utils::loadROSParam(nh, "/tail_controller/tail_num", tail_num_);
 
   // Listen to the update event. This event is broadcast every
   // simulation iteration.
@@ -179,8 +181,14 @@ void QuadEstimatorGroundTruth::OnUpdate() {
       model_joint_name.push_back(joint->GetName());
     }
 
-    // state.tail_joints.name = {"body_tail_joint_0", "body_tail_joint_1"};
-    state.tail_joints.name = {"body_tail_joint_0"};
+    if (tail_num_ == 2) {
+      state.tail_joints.name = {"body_tail_joint_0", "body_tail_joint_1"};
+    } else if (tail_num_ == 1) {
+      state.tail_joints.name = {"body_tail_joint_0"};
+    } else {
+      ROS_ERROR_STREAM(
+          "Invalid tail number... Available tails (as of right now) is 1 or 2");
+    }
 
     // With tail
     for (size_t i = 0; i < state.tail_joints.name.size(); i++) {

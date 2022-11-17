@@ -33,6 +33,13 @@ TailController::TailController(ros::NodeHandle nh) {
       break;
   }
 
+  quad_utils::loadROSParam(nh, "tail_controller/tail_num", tail_num_);
+  if (tail_num_ > 2) {
+    ROS_ERROR_STREAM(
+        "Tail number exceeds available option. Tail num of 1 to 2 are "
+        "available");
+  }
+
   // Get rosparams
   std::string tail_plan_topic, tail_control_topic, robot_state_topic;
   quad_utils::loadROSParam(nh_, "/topics/control/tail_plan", tail_plan_topic);
@@ -52,6 +59,7 @@ TailController::TailController(ros::NodeHandle nh) {
                            pitch_kd_);
 
   // Extra params from open loop tail
+
   if (param_ns_ == "open_loop_tail") {
     quad_utils::loadROSParam(
         nh_, "tail_controller/" + param_ns_ + "/ff_torque_1", ff_torque_1);
@@ -61,6 +69,30 @@ TailController::TailController(ros::NodeHandle nh) {
                              time_1);
     quad_utils::loadROSParam(nh_, "tail_controller/" + param_ns_ + "/time_2",
                              time_2);
+
+    // If ran through quad_gazebo_dira, rewrite these params loaded from launch
+    // file args
+    if (nh_.hasParam("tail_controller/" + param_ns_ + "/param_ff_torque_1")) {
+      quad_utils::loadROSParam(
+          nh_, "tail_controller/" + param_ns_ + "/param_ff_torque_1",
+          ff_torque_1);
+    }
+
+    if (nh_.hasParam("tail_controller/" + param_ns_ + "/param_ff_torque_2")) {
+      quad_utils::loadROSParam(
+          nh_, "tail_controller/" + param_ns_ + "/param_ff_torque_2",
+          ff_torque_2);
+    }
+
+    if (nh_.hasParam("tail_controller/" + param_ns_ + "/param_time_1")) {
+      quad_utils::loadROSParam(
+          nh_, "tail_controller/" + param_ns_ + "/param_time_1", time_1);
+    }
+
+    if (nh_.hasParam("tail_controller/" + param_ns_ + "/param_time_2")) {
+      quad_utils::loadROSParam(
+          nh_, "tail_controller/" + param_ns_ + "/param_time_2", time_2);
+    }
   }
 
   // Setup pubs and subs
@@ -140,11 +172,9 @@ void TailController::publishTailCommand() {
 
     if (ros::Time::now().toSec() > time_1 &&
         ros::Time::now().toSec() < (time_1 + 0.20)) {
-      double ff_torque_param1 = ff_torque_1;
-      double ff_torque_param2 = 0;
-      ROS_WARN("FF TORQUE of %0.2f", ff_torque_param1);
-      msg.motor_commands.at(0).torque_ff = ff_torque_param1;
-      msg.motor_commands.at(1).torque_ff = ff_torque_param2;
+      ROS_WARN_ONCE("FF TORQUE of %0.2f", ff_torque_1);
+      msg.motor_commands.at(0).torque_ff = ff_torque_1;
+      msg.motor_commands.at(1).torque_ff = 0;
 
       msg.motor_commands.at(0).pos_setpoint = 0;
       msg.motor_commands.at(0).vel_setpoint = 0;
@@ -161,11 +191,9 @@ void TailController::publishTailCommand() {
 
     if (ros::Time::now().toSec() > time_2 &&
         ros::Time::now().toSec() < (time_2 + 0.20)) {
-      double ff_torque_param1 = 0;
-      double ff_torque_param2 = ff_torque_2;
-      ROS_WARN("FF TORQUE of %0.2f", ff_torque_param2);
-      msg.motor_commands.at(0).torque_ff = ff_torque_param1;
-      msg.motor_commands.at(1).torque_ff = ff_torque_param2;
+      ROS_WARN_ONCE("FF TORQUE of %0.2f", ff_torque_2);
+      msg.motor_commands.at(0).torque_ff = 0;
+      msg.motor_commands.at(1).torque_ff = ff_torque_2;
 
       msg.motor_commands.at(0).pos_setpoint = 0;
       msg.motor_commands.at(0).vel_setpoint = 0;

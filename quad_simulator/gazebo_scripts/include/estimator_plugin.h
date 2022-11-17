@@ -37,6 +37,8 @@ class QuadEstimatorGroundTruth : public ModelPlugin {
   event::ConnectionPtr updateConnection_;
 
   int tail_type_;
+
+  int tail_num_;
 };
 GZ_REGISTER_MODEL_PLUGIN(QuadEstimatorGroundTruth)
 }  // namespace gazebo

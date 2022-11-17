@@ -80,6 +80,8 @@ class TailController {
 
   int tail_type_;
 
+  int tail_num_;
+
   Eigen::VectorXd tail_current_state_;
 
   std::string param_ns_;
