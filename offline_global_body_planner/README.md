@@ -27,10 +27,12 @@ Generally, the workflow as of right now is:
 4. Execute offline global body plan by running the following commands (ensure IC is the same when spawning):
 
 ```
-roslaunch quad_utils quad_gazebo.launch world:=flat_20_20
+roslaunch quad_utils quad_gazebo.launch world:=flat_20_20 init_pose:=<initial pose of offline plan>
 rostopic pub /robot_1/control/mode std_msgs/UInt8 "data: 1"
 roslaunch quad_utils quad_plan.launch reference:=offl_gbpl_2
 ```
+
+where <initial pose of offline plan> is typically "-x -9 -y 1 -z 0.5 -Y 0.0" as of right now.
 
 
 

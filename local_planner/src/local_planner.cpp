@@ -6,7 +6,6 @@ Eigen::IOFormat CleanFmt(4, 0, ", ", "\n", "[", "]");
 LocalPlanner::LocalPlanner(ros::NodeHandle nh)
     : local_body_planner_nonlinear_(), local_footstep_planner_() {
   nh_ = nh;
-
   // Load rosparams from parameter server
   std::string terrain_map_topic, body_plan_topic, robot_state_topic,
       local_plan_topic, foot_plan_discrete_topic, foot_plan_continuous_topic,
