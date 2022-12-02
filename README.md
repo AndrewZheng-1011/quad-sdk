@@ -37,7 +37,6 @@ Or, run a batch script of curated open-loop torque control
 ./run_batch_simulation_dira.py
 ```
 
-
 ## Remarks
 Note, that tail_controller.yaml has the parameters to change the open-loop torque value and the time to execute these. Following can be accessed through the following directory as shown below:
 
@@ -45,3 +44,7 @@ Note, that tail_controller.yaml has the parameters to change the open-loop torqu
 roscd tail_controller/
 gedit tail_controller.yaml
 ```
+
+## TODO
+Add constant FF torque for multi-link tail s.t. continuum tail can orient upwards
+
