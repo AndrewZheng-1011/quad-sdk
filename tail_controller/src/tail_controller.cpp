@@ -210,7 +210,7 @@ void TailController::publishTailCommand() {
 
       if (ros::Time::now().toSec() > time_[i] &&
           ros::Time::now().toSec() < (time_[i] + 0.20)) {
-        ROS_WARN_THROTTLE(0.2, "FF TORQUE %d of %0.2f", i, ff_torque_[i]);
+        ROS_WARN_THROTTLE(0.05, "FF TORQUE %d of %0.2f", i, ff_torque_[i]);
         msg.motor_commands.at(i).torque_ff = ff_torque_[i];
         msg.motor_commands.at(i).pos_setpoint = 0;
         msg.motor_commands.at(i).vel_setpoint = 0;

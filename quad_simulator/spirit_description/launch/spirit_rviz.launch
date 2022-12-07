@@ -25,7 +25,7 @@ SOFTWARE.
 -->
 
 <launch>
-  <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_tail_3.urdf" />
+  <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_tail_2.urdf" />
   <param name="use_gui" value="true" />
 
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />

@@ -18,8 +18,8 @@ tail_controller:
     roll_kd: 1
     pitch_kp: 10
     pitch_kd: 1
-    ff_torque_0: 20 # Convention is ff torque for tail joint 0, etc.
-    ff_torque_1: -15
+    ff_torque_0: 45 # Convention is ff torque for tail joint 0, etc.
+    ff_torque_1: -45
     ff_torque_2: 0
     ff_torque_3: 0
     ff_torque_4: 0
@@ -28,8 +28,8 @@ tail_controller:
     ff_torque_7: 0
     ff_torque_8: 0
     ff_torque_9: 0
-    time_0: 4.50 #4.75 # Set this to negative to have no ff_torque
-    time_1: 5.3 #5.00 # Set this to negative to have no ff_torque
+    time_0: 4.75 #4.75 # Set this to negative to have no ff_torque
+    time_1: 5.0 #5.00 # Set this to negative to have no ff_torque
     time_2: -2
     time_3: -2
     time_4: -2

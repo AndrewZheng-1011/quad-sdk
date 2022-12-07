@@ -16,21 +16,21 @@ type_index = int(sys.argv[3])
 
 if len(sys.argv) > 4:
     dira_version = sys.argv[4]
-    tail_num = int(sys.argv[5])  # 1 or 2 tails
+    tail_num = int(sys.argv[5])  # 1,2,3,4,5,6,10 tails
 else:
     dira_version = 'true'
     tail_num = '2'
 
 if len(sys.argv) > 6:
-    ff_torque_1 = sys.argv[6]
-    ff_torque_2 = sys.argv[7]
-    time_1 = sys.argv[8]
-    time_2 = sys.argv[9]
+    ff_torque_0 = sys.argv[6]
+    ff_torque_1 = sys.argv[7]
+    time_0 = sys.argv[8]
+    time_1 = sys.argv[9]
 else:
-    ff_torque_1 = '30'
-    ff_torque_2 = '-45'
-    time_1 = '4.75'
-    time_2 = '5.00'
+    ff_torque_0 = '45'
+    ff_torque_1 = '-45'
+    time_0 = '4.75'
+    time_1 = '5.00'
 
 live_plot = "False"
 
@@ -153,6 +153,8 @@ elif type_index == 2:
     rospy.loginfo('Gazebo running')
 
     print("FEEDBACK/DECENTRALIZED TAIL SCENARIO")
+    print("OPEN-LOOP PARAMS: FF_TORQUE_1 %0.1f | FF_TORQUE_2 %0.1f | TIME_1 %0.1f | TIME_2 %0.1f\n" %
+          (ff_torque_1, ff_torque_2, time_1, time_2))
     print("TIME TO INITIALIZE: %0.2f" % time_init)
     rospy.sleep(time_init)
 
@@ -191,8 +193,8 @@ elif type_index == 3:
     launch_args = ['quad_utils', 'quad_gazebo_dira.launch', 'paused:=false', 'rviz_gui:=true', 'gui:=true', 'dira:=' + dira_version,
                    world[world_index], 'tail:=true', 'tail_type:=4', 'tail_num:=' +
                    str(tail_num), 'x_init:='+str(init_pos[batch_index]),
-                   'param_ff_torque_1:='+ff_torque_1, 'param_ff_torque_2:=' +
-                   ff_torque_2, 'param_time_1:='+time_1, 'param_time_2:='+time_2,
+                   'param_ff_torque_0:='+ff_torque_0, 'param_ff_torque_1:=' +
+                   ff_torque_1, 'param_time_0:='+time_0, 'param_time_1:='+time_1,
                    'live_plot:=' + live_plot]
     launch_pars = [(roslaunch.rlutil.resolve_launch_arguments(
         launch_args)[0], launch_args[2:])]

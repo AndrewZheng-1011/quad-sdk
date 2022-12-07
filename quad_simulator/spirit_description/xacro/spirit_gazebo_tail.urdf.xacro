@@ -459,7 +459,8 @@ SOFTWARE.
 			<mass value="${tailLinkMass}" />
 			<!--<inertia ixx="${tailLinkMass/12*(3*0.02*0.02 + tailLength*tailLength)}" ixy="0" ixz="0" iyy="${tailLinkMass/12*(3*0.02*0.02 + tailLength*tailLength)}" iyz="0.0" izz="${tailLinkMass*(0.02*0.02)/2}" /> -->
 			<!-- Assume inertia of a sphere & scale base of 2/5MR^2 -->
-			<inertia ixx="${1e-04/(tailNum*tailNum)}" ixy="0" ixz="0" iyy="${1e-04/(tailNum*tailNum)}" iyz="0" izz="${1e-04/(tailNum*tailNum)}" />
+			<!--<inertia ixx="${1e-04/(tailNum*tailNum)}" ixy="0" ixz="0" iyy="${1e-04/(tailNum*tailNum)}" iyz="0" izz="${1e-04/(tailNum*tailNum)}" /> -->
+			<inertia ixx="${1e-04}" ixy="0" ixz="0" iyy="${1e-04}" iyz="0" izz="${1e-04}" />
 		</inertial>
 		<!-- No need to add collision boxes for this -->
 	</link>
@@ -479,7 +480,8 @@ SOFTWARE.
 		<inertial>
 			<origin xyz="0 0 ${tailLength/2}" rpy="0 0 0" />
 			<mass value="${tailLinkMass}" />
-			<inertia ixx="${1e-04/(tailNum*tailNum)}" ixy="0" ixz="0" iyy="${1e-04/(tailNum*tailNum)}" iyz="0" izz="${1e-04/(tailNum*tailNum)}" />
+			<!--<inertia ixx="${1e-04/(tailNum*tailNum)}" ixy="0" ixz="0" iyy="${1e-04/(tailNum*tailNum)}" iyz="0" izz="${1e-04/(tailNum*tailNum)}" /> -->
+			<inertia ixx="${1e-04}" ixy="0" ixz="0" iyy="${1e-04}" iyz="0" izz="${1e-04}" />
 		</inertial>
 	</link>
 

@@ -28,14 +28,14 @@ roscd quad_utils/scripts
 
 where:
 - env_type is the environments with different elevation ranging from 0-11 (0 lowest, 11 highest)
-- batch_num is the batch it is ran (a way to keep up with the file)
+- batch_num is the batch initial spawn point (working 40)
 - 3 is to run sequential open loop tail control
 - true: To run the dira setup (i.e. double pendulum tails)
 - tail_num: Number of tail link (range is 1-2)
-- ff_torque_1: The first open loop torque
-- ff_torque_2: The second open loop torque
-- time_1: ros time to execute ff_torque_1
-- time_2: ros time to execute ff_torque_2
+- ff_torque_1: The first open loop torque (working 30)
+- ff_torque_2: The second open loop torque (working -45)
+- time_1: ros time to execute ff_torque_1 (working 4.75)
+- time_2: ros time to execute ff_torque_2 (working 5)
 
 ## Run script to run batches of Sequential Open Loop Tail Control
 

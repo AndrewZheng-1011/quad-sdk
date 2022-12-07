@@ -41,10 +41,10 @@ SOFTWARE.
     <arg name="x_init" default="6.0" />
 
     <!-- Assigned through user -->
-    <arg name="param_ff_torque_0" default="30" />
-    <arg name="param_ff_torque_1" default="-30" />
-    <arg name="param_time_0" default="4.5" />
-    <arg name="param_time_1" default="4.7" />
+    <arg name="param_ff_torque_0" default="45" />
+    <arg name="param_ff_torque_1" default="-45" />
+    <arg name="param_time_0" default="4.75" />
+    <arg name="param_time_1" default="5.00" />
 
     <param name="tail_controller/tail_type" value="$(arg tail_type)" />
     <param name="tail_controller/tail_num" value="$(arg tail_num)" />
