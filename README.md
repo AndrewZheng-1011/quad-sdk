@@ -4,6 +4,8 @@ This repository is inspired from the original repo taken from this paper: https:
 
 The following is a small project based off this paper. This work uses open loop controls to help re-orient quadruped walking off cliff
 
+## Prerequisite
+Please follow the main branch on how to download quad-sdk. Then you can switch to this branch to run the following scripts below.
 
 ## Launch Files
 The following branch can also run through the roslaunch files:
