@@ -105,6 +105,11 @@ SOFTWARE.
     <group unless="$(arg rotors)">
         <group if="$(arg tail)">
             <group if="$(arg dira)">
+                <group if="$(eval arg('tail_num') == 0)">
+                    <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_dira.urdf" />
+                    <param name="robot_description_sdf" textfile="$(find spirit_description)/sdf_mesh/spirit_dira.sdf" />
+                    <rosparam file="$(find gazebo_scripts)/config/spirit_control.yaml" command="load" />
+                </group>
                 <group if="$(eval arg('tail_num') == 1)">
                     <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_tail_1.urdf" /> <!-- Original: spirit_tail.urdf -->
                     <!-- <param name="robot_description" textfile="$(find spirit_description)/urdf/spirit_meshes_tail.urdf" /> -->
