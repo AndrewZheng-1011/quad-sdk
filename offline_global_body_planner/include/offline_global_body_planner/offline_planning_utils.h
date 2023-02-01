@@ -108,6 +108,8 @@ struct PlannerConfig {
   }
 };
 
+enum ExitFlag { INVALID_START_GOAL_EQUAL };
+
 /**
  * @brief Define state with Eigen data
  *
@@ -257,6 +259,14 @@ inline Eigen::Vector3d getSurfaceNormalFiltered(
  * @return Pitch of current state
  */
 double getPitchFromState(const State &s, const PlannerConfig &planner_config);
+
+/**
+ * @brief Align lateral velocity along surface normal of filtered map
+ * @param s State
+ * @param planner_config Configuration parameters
+ * @return delta z
+ */
+double getDzFromState(const State &s, const PlannerConfig &planner_config);
 
 /**
  * @brief Inline function to check if pos is inside map range or not

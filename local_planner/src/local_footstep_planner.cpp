@@ -136,6 +136,15 @@ void LocalFootstepPlanner::cubicHermiteSpline(double pos_prev, double vel_prev,
                                               double& acc) {
   // Sometimes phase will be slightly smaller than zero due to numerical issues
   phase = std::min(std::max(phase, 0.), 1.);
+  // Pos: slightly neg -> Prob ground w/ toe correction? and then pos... of
+  // up to 3.5-4m...?
+  // Vel: 0's... makes sense to have 0 vel in x and y when stance
+  /*
+  std::cout << "prev pos: " << pos_prev << std::endl;
+  std::cout << "prev vel: " << vel_prev << std::endl;
+  std::cout << "next pos: " << pos_next << std::endl;
+  std::cout << "next vel: " << vel_next << std::endl;
+  */
 
   double t = phase * duration;
   double t2 = t * t;
@@ -181,6 +190,8 @@ void LocalFootstepPlanner::computeFootPlan(
     Eigen::MatrixXd& foot_accelerations) {
   // Loop through each foot to compute the new footholds
   for (int j = 0; j < num_feet_; j++) {
+    // std::cout << "contact schedule size: " << contact_schedule.size()
+    //           << std::endl;  // 26... same as MPC horizon prob
     // Loop through the horizon to identify instances of touchdown
     for (int i = 1; i < contact_schedule.size(); i++) {
       if (isNewContact(contact_schedule, i, j)) {

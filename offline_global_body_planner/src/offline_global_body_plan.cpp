@@ -135,13 +135,14 @@ bool OfflineGlobalBodyPlan::loadPlanData(double t0, double dt,
                                          std::vector<State> &state_sequence,
                                          std::vector<GRF> &grf_sequence,
                                          const PlannerConfig &planner_config) {
-  // Check validity of dt
+  // TODO (AZ): Work on interpolating if dt of plan and dt of offline plan do
+  // not match up Check validity of dt
   if (dt <= 0) {
     ROS_ERROR("Invalid dt = %0.2f. dt must be greater than 0.", dt);
   }
 
   int num_discrete_pts = state_sequence.size();  // state trajectory size
-  double plan_length = 0;                        // Current plan length
+  double plan_length = 0;                        // Initialize plan length
   plan_loaded_ = true;  // For now, set plan to be loaded as true here unless
                         // otherwise... weak and not robust
 
@@ -153,8 +154,11 @@ bool OfflineGlobalBodyPlan::loadPlanData(double t0, double dt,
       // ROS_WARN("Global plan is off the map!!");
       plan_loaded_ = false;
     }
-    // TODO(AZ): Figure out what to do with v_z
-    state_sequence.at(i).vel[2] = 0;
+
+    // Set v_z to be aligned with surf norm, but also in proportion to planar
+    // velocity
+    state_sequence.at(i).vel[2] =
+        getDzFromState(state_sequence.at(i), planner_config);
 
     // Add 3rd dim to inputs (i.e. fixed mg)
     addMG(grf_sequence.at(i), planner_config);
@@ -176,14 +180,15 @@ bool OfflineGlobalBodyPlan::loadPlanData(double t0, double dt,
   }
 
   // Lift from reduced plan into full body plan
-  addFullStates(start_state, state_sequence, 0.01, body_plan_,
-                planner_config);  // TODO(AZ): add dt
+  addFullStates(start_state, state_sequence, dt, body_plan_,
+                planner_config);  // TODO(AZ): ensure works for any dt | works
+                                  // for 0.01 atm
 
   // Transfer modified sequence to plan
   state_sequence_ = state_sequence;
   grf_sequence_ = grf_sequence;
 
-  // Not sure best code design
+  // Not best code design
   if (!plan_loaded_) {
     ROS_ERROR("Global plan is off the map!!!");
     return false;

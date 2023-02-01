@@ -17,17 +17,13 @@
 #include <grid_map_ros/GridMapRosConverter.hpp>
 #include <grid_map_ros/grid_map_ros.hpp>
 
-#include "offline_global_body_planner/offline_planning_utils.h"
-
-// #include "global_body_planner/gbpl.h" // Don't think I need this
-// #include "global_body_planner/global_body_plan.h" // Probably also do not
-// need this
+#include "offline_global_body_planner/offline_global_body_plan.h"
 
 using namespace offline_planning_utils;
 
-//! An offline global body planner for legged robots
+//! Will be the official offline global body planner for legged robots
 /*!
-    OfflineGlobalBodyPlanner contains all the logic contained in the
+    OfflineGlobalBodyPlanner2 contains all the logic contained in the
    OfflineGlobalBodyPlanner node. Currently, it's main purpose is to generally
    take a trajectory of states and control inputs and publish it in a RobotPlan
    msg format.
@@ -35,9 +31,8 @@ using namespace offline_planning_utils;
 class OfflineGlobalBodyPlanner {
  public:
   /**
-   * @brief Constructor for Offline Global Body Planner class
-   * @param nh Node Handle
-   * @return Constructed object of type OfflineGlobalBodyPlanner
+   * @brief Constructor for Offline Global Body Planner 2 class
+   * @param nh Nodehandle
    */
   OfflineGlobalBodyPlanner(ros::NodeHandle nh);
 
@@ -49,8 +44,25 @@ class OfflineGlobalBodyPlanner {
    * @param numStates Dimension of states
    * @param numCtrl Dimension of control
    */
-  void loadCSVData(std::string state_file_path, std::string ctrl_file_path,
-                   int num_states, int num_ctrl);
+  void loadCSVData(
+      std::string state_file_path, std::string ctrl_file_path, int num_states,
+      int num_ctrl);  // may need plan object or simply state_sequence, etc.
+
+  /**
+   * @brief Set the start state to be used by the next planning call
+   */
+  void setStartState();
+
+  /**
+   * @brief Set the goal state to be used by the next planning call
+   */
+  void setGoalState();
+
+  /**
+   * @brief Call the planner
+   * @return Whether calling plan went through or not
+   */
+  bool callPlanner();
 
   /**
    * @brief Publish FullState plan
@@ -58,88 +70,22 @@ class OfflineGlobalBodyPlanner {
   void publishPlan();
 
   /**
-   * @brief Get the position of quadruped given height and location w/in terrain
-   * @param pos State position
-   * @param planner_config Planner configuration
+   * @brief Callback function to handle new terrain map data
+   * @param[in] msg the message containing map data
    */
-  void getNominalHeight(
-      Eigen::Vector3d &pos);  // Add planner_config as parameter later
+  void terrainMapCallback(const grid_map_msgs::GridMap::ConstPtr &msg);
 
   /**
-   * @brief Add mg to GRF due to planar planner
-   * @param grf Ground Reaction force added with fixed z component
+   * @brief Callback function to handle new robot state data
+   * @param msg[in] msg the message containing robot state data
    */
-  void addMG(GRF &grf);
+  void robotStateCallback(const quad_msgs::RobotState::ConstPtr &msg);
 
   /**
-   * @brief Add fixed primitive ID into plan (Remove in future potentially - AZ)
+   * @brief Callback function to handle new goal state
+   * @param msg the message containing the goal state
    */
-  void addWalkID();
-
-  /**
-   * @brief Get dist to goal from control and state trajectory
-   */
-  void getDistToGoal();
-
-  /**
-   * @brief Print state_sequence
-   * @param state_sequence Sequence of state
-   */
-  void printStateSequence(const std::vector<State> &state_sequence);
-
-  /**
-   * @brief Print grf_sequence
-   * @param grf_sequence Sequence of action
-   */
-  void printGRFSequence(const std::vector<GRF> &grf_sequence);
-
-  /**
-   * @brief Print FullState plan
-   * @param full_state_plan FullState plan
-   */
-  void printFullStatePlan(const std::vector<FullState> &full_state_plan);
-
-  /**
-   * @brief
-   * @param t Time at which this data occurs
-   * @param plan_index Index in the plan for which this data will be inserted
-   * @param body_state Body state data
-   * @param grf GRF data
-   * @param primitive_id ID for stance (LEAP), FLIGHT, or LAND (0 for stance)
-   * @param[out] msg Robot plan message with data added
-   */
-  void addStateAndGRFToMsg(double t, int plan_index,
-                           const FullState &body_state, const GRF &grf,
-                           int primitive_id, quad_msgs::RobotPlan &msg);
-  /**
-   * @brief Set the timestamp at which the plan was computed (unique)
-   * @param timestamp Timestamp at which plan returned
-   */
-  inline void setComputedTimestamp(ros::Time timestamp) {
-    computed_timestamp_ = timestamp;
-  }
-
-  /**
-   * @brief Set the timestamp at which the plan was published
-   * @param timestamp Timestamp at which plan was published
-   */
-  inline void setPublishedTimestamp(ros::Time timestamp) {
-    published_timestamp_ = timestamp;
-  }
-
-  /**
-   * @brief Get the Computed Timestamp
-   * @return ros::Time Timestamp at which plan computed
-   */
-  inline ros::Time getComputedTimestamp() const { return computed_timestamp_; }
-
-  /**
-   * @brief Get the Published Timestamp
-   * @return ros::Time Timestamp at which a plan was published
-   */
-  inline ros::Time getPublishedTimestamp() const {
-    return published_timestamp_;
-  }
+  void goalStateCallback(const geometry_msgs::PointStamped::ConstPtr &msg);
 
   /**
    * @brief Primary work function in class, called in node file for this
@@ -148,28 +94,6 @@ class OfflineGlobalBodyPlanner {
   void spin();
 
  private:
-  /**
-   * @brief Get the Terrain Z Filtered From State object
-   *
-   * @param pos State position
-   * @param planner_config Configuration parameters
-   */
-  void getTerrainZFilteredFromState(const Eigen::Vector3d &pos,
-                                    const PlannerConfig &planner_config);
-
-  /**
-   * @brief Callback function to handle new terrain map data
-   * @param msg the message containing map data
-   */
-
-  void terrainMapCallback(const grid_map_msgs::GridMap::ConstPtr &msg);
-
-  /**
-   * @brief Callback function to handle new robot state data
-   * @param[in] msg the message contining robot state data
-   */
-  void robotStateCallback(const quad_msgs::RobotState::ConstPtr &msg);
-
   /**
    * @brief Set additional parameters to be viable for quad-sdk framework
    *
@@ -181,60 +105,15 @@ class OfflineGlobalBodyPlanner {
                     const PlannerConfig &planner_config);
 
   /**
-   * @brief Resets the body plan to 0
-   *
+   * @brief Triggers a reset event
    */
-  void resetBodyPlan();
+  void triggerReset();
 
   /**
-   * @brief Resets the state and action sequence to 0
-   *
+   * @brief Wait until map and state messages have been received and processed
+   * TODO(AZ): Do when get terrain info, etc.
    */
-  void resetSequence();
-
-  /**
-   * @brief Get the Length Of Plan
-   * @return double The distance [m] of the plan
-   */
-  double getLengthOfPlan();
-
-  /**
-   * @brief Loads all body plan into a RobotPlan msg
-   * @param robot_plan_msg Robot plan message
-   * @param discrete_robot_plan_msg Discrete robot plan message
-   */
-  void convertPlanToMsg(quad_msgs::RobotPlan &robot_plan_msg,
-                        quad_msgs::RobotPlan &discrete_robot_plan_msg);
-
-  /// Node Handle
-  ros::NodeHandle nh_;
-
-  // Variables that seem to go into plan need to be moved into plan class in
-  // future ** TODO
-  /// Time stamp for when plan was computed/loaded in this case (unique)
-  ros::Time computed_timestamp_;
-
-  /// Time stamp for when plan was published (not unique)
-  ros::Time published_timestamp_;
-
-  /// Std vector containing the robot body plan
-  std::vector<FullState> body_plan_;
-
-  /// Std vector containing the discrete states in the sequence (not quite a
-  /// plan yet.. feel free to name better)
-  std::vector<State> state_sequence_;
-
-  /// Std vector containing the GRF in the plan
-  std::vector<GRF> grf_sequence_;
-
-  /// Std vector containing primitive id plan
-  std::vector<int> primitive_id_plan_;
-
-  /// Std vector containing time data
-  std::vector<double> t_plan_;
-
-  /// Std vector containing cimulative path length at each index of the plan
-  std::vector<double> length_plan_;
+  void waitForData();
 
   /// Subscriber for terrain map messages
   ros::Subscriber terrain_map_sub_;
@@ -242,11 +121,8 @@ class OfflineGlobalBodyPlanner {
   /// Subscriber for robot state messages
   ros::Subscriber robot_state_sub_;
 
-  /// Subscriber for goal messages
-  ros::Subscriber goal_state_sub_;
-
-  /// Publisher for body plan messages
-  ros::Subscriber body_plan_sub_;
+  /// Subscriber for body plan messages
+  ros::Subscriber goal_state_sub_;  // Don't need this until online PF planner
 
   /// Publisher for body plan messages
   ros::Publisher body_plan_pub_;
@@ -255,34 +131,99 @@ class OfflineGlobalBodyPlanner {
   ros::Publisher discrete_body_plan_pub_;
 
   /// Publisher for the planning tree
-  ros::Publisher tree_pub_;  // Prob don't need
+  ros::Publisher tree_pub_;  // Probably don't need this
 
-  /// Topic name for terrain map
+  /// Topic name for terrain map (needed to ensure data has been received)
   std::string terrain_map_topic_;
 
-  /// Topic name for robot state data
+  /// Topic name for robot state data (needed to ensure data has been received)
   std::string robot_state_topic_;
 
-  /// Topic name for goal state topic
-  std::string goal_state_topic_;
+  /// Node Handle
+  ros::NodeHandle nh_;
+
+  /// Update rate for sending and receiving data
+  double update_rate_;
 
   /// Handle for the map frame
   std::string map_frame_;
+
+  /// Plan data (TODO(AZ): Future may want newest & current plan)
+  OfflineGlobalBodyPlan plan_;
 
   /// Starting state for planner call
   FullState start_state_;
 
   /// Goal state for planner
+  // TODO(AZ): Edit when want to change goal state mid-plan
   FullState goal_state_;
 
   /// Current robot state
   FullState robot_state_;
 
-  /// Goal state msg
+  /// goal_state_msg
   geometry_msgs::PointStamped::ConstPtr goal_state_msg_;
 
-  // Published plan
-  bool published_plan_;
+  /// Threshold of state error to trigger replanning
+  double pos_error_threshold_;  // TODO(AZ): When using online planner
+
+  /// Flag to determine if the planner needs to restart planning from
+  /// the robot state
+  bool restart_flag_;
+
+  /// Sequences of discrete states in the plan
+  std::vector<State> state_sequence_;
+
+  /// Sequence of discrete grf in the plan
+  std::vector<GRF> grf_sequence_;
+
+  // TODO(AZ): Good to use if need these info for online planner
+  /// Vector of cost instances in each planning call
+  std::vector<double> cost_vector_;
+
+  /// Vector of time instances of cost data for each planning call
+  std::vector<double> cost_vector_times_;
+
+  /// Vector of solve times for each planning call
+  std::vector<double> solve_time_info_;
+
+  /// Planner config
+  PlannerConfig planner_config_;
+
+  /// Boolean for whether replanning is allowed
+  bool replanning_allowed_;  // TODO(AZ): use when online planner
+
+  /// Timestep for interpolation
+  double dt_;
+
+  /// ID for status of planner
+  int planner_status_;
+
+  /// Index of activate plan from which to begin refinement
+  // TODO(AZ): may need when online and some extra var for online
+  // planning
+  int start_index_;
+
+  /// Timestamp for t=0 of global plan
+  ros::Time global_plan_timestamp_;
+
+  /// Time at which reset began
+  ros::Time reset_time_;
+
+  /// Delay after plan reset before publishing
+  double reset_publish_delay_;
+
+  /// Status of plan
+  bool plan_status_;
+
+  /// Published plan
+  bool published_plan_;  // TODO(AZ): change variable when online and purpose
+
+  /// Filepath for state trajectory
+  std::string state_file_path_;
+
+  /// Filepath for control trajectory
+  std::string ctrl_file_path_;
 };
 
-#endif  // OFFLINE_GLOBAL_BODY_PLANNER_H
+#endif

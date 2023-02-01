@@ -136,7 +136,7 @@ class OfflineGlobalBodyPlanner2 {
   /// Topic name for terrain map (needed to ensure data has been received)
   std::string terrain_map_topic_;
 
-  /// Topic name for  robot state data (needed to ensure data has been received)
+  /// Topic name for robot state data (needed to ensure data has been received)
   std::string robot_state_topic_;
 
   /// Node Handle

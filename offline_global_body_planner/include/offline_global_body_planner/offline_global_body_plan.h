@@ -127,7 +127,12 @@ class OfflineGlobalBodyPlan {
   /**
    * @brief Load plan by adding additional parameters to be viable for quad-sdk
    * framework
-   *
+   * @param t0 Start time of plan data
+   * @param dt Timestep of plan
+   * @param start_state Start state of robot
+   * @param state_sequence Discrete state sequences to be filled
+   * @param grf_plan Discrete control sequence to be filled
+   * @param planner_config Planning configuration parameters
    */
   bool loadPlanData(double t0, double dt, const FullState &start_state,
                     std::vector<State> &state_sequence,

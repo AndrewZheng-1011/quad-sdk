@@ -156,6 +156,14 @@ double getPitchFromState(const State &s, const PlannerConfig &planner_config) {
   return atan2(v_proj, surf_norm[2]);
 }
 
+double getDzFromState(const State &s, const PlannerConfig &planner_config) {
+  Eigen::Vector3d surf_norm = getSurfaceNormalFiltered(s, planner_config);
+
+  return ((surf_norm[2] <= 0)
+              ? std::numeric_limits<double>::max()
+              : -(s.vel.head<2>().dot(surf_norm.head<2>()) / surf_norm[2]));
+}
+
 void printState(const State &s) {
   std::cout << "STATE: pos = " << s.pos.transpose()
             << ", vel = " << s.vel.transpose() << std::endl;
