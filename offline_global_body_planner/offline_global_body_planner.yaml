@@ -10,11 +10,13 @@ offline_global_body_planner:
   g: 9.81                                 # Gravity constant, m/s^2
   # state_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj_demo.csv"  # Filepath of state trajectory
   # ctrl_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj_demo.csv"     # Filepath of control trajectory
-  state_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj_obs.csv"  
-  ctrl_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj_obs.csv" 
+  # state_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj_obs.csv"  
+  # ctrl_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj_obs.csv" 
   # state_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj-rad-3-Q-10-R-100-Q_bs-10-R_bs-10_gaussian.csv" 
   # ctrl_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj-rad-3-Q-10-R-100-Q_bs-10-R_bs-10_gaussian.csv"  
-  #state_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj_2.csv"  # Filepath of state trajectory
-  #ctrl_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj_2.csv"     # Filepath of control trajectory
-  # state_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj-rad-3-Q-10-R-1000.csv"  # Filepath of state trajectory
-  # ctrl_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj-rad-3-Q-10-R-1000.csv"     # Filepath of control trajectory
+  #state_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj_2.csv" 
+  #ctrl_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj_2.csv"     
+  # state_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj-rad-3-Q-10-R-1000.csv"
+  # ctrl_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj-rad-3-Q-10-R-1000.csv"    
+  state_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj_4_obs.csv"
+  ctrl_file_path: "/home/andrewzheng1011/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj_4_obs.csv"  
