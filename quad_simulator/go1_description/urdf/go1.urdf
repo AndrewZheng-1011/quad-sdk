@@ -325,7 +325,7 @@
         </visual>
     </gazebo> -->
   <gazebo reference="body">
-    <material>Gazebo/White</material>
+    <material>Gazebo/Gray</material>
     <turnGravityOff>false</turnGravityOff>
   </gazebo>
   <gazebo reference="trunk">
