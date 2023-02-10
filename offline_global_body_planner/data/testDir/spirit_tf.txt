@@ -1,0 +1,20 @@
+transforms: 
+  - 
+    header: 
+      seq: 4720
+      stamp: 
+        secs: 9
+        nsecs: 450000000
+      frame_id: "map"
+    child_frame_id: "/ground_truth/body"
+    transform: 
+      translation: 
+        x: 6.00509422907
+        y: -5.10884200771
+        z: -21.0280531339
+      rotation: 
+        x: -0.715295799599
+        y: 0.477224275017
+        z: -0.464749310622
+        w: -0.211227338871
+---

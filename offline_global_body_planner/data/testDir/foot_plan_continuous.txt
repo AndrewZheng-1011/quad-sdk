@@ -1,0 +1,2426 @@
+header: 
+  seq: 0
+  stamp: 
+    secs: 35
+    nsecs: 891000000
+  frame_id: "map"
+states: 
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 35
+        nsecs: 877000000
+      frame_id: "map"
+    traj_index: 0
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 0
+        position: 
+          x: 0.237238837667
+          y: 0.175523877557
+          z: 0.0190653737591
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 0
+        position: 
+          x: -0.215341061525
+          y: 0.17572305222
+          z: 0.0185745178743
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -5.05097609139
+          y: -0.887856375753
+          z: 38.0929497228
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 0
+        position: 
+          x: 0.237163743417
+          y: -0.175827264311
+          z: 0.0190653751998
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -5.05892694494
+          y: 0.872538844786
+          z: 37.7293517038
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 0
+        position: 
+          x: -0.215413992028
+          y: -0.175820798799
+          z: 0.0185744788569
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 35
+        nsecs: 907000000
+      frame_id: "map"
+    traj_index: 1
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 1
+        position: 
+          x: 0.237238837667
+          y: 0.175523877557
+          z: 0.0190653737591
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 1
+        position: 
+          x: -0.217361451961
+          y: 0.17536790967
+          z: 0.0319070502772
+        velocity: 
+          x: -0.126274402285
+          y: -0.0221964093938
+          z: 0.761858994456
+        acceleration: 
+          x: -3.36731739426
+          y: -0.591904250502
+          z: 12.6976499076
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 1
+        position: 
+          x: 0.235140172639
+          y: -0.175478248774
+          z: 0.0322706482962
+        velocity: 
+          x: -0.126473173624
+          y: 0.0218134711196
+          z: 0.754587034077
+        acceleration: 
+          x: -3.37261796329
+          y: 0.58169256319
+          z: 12.5764505679
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 1
+        position: 
+          x: -0.215413992028
+          y: -0.175820798799
+          z: 0.0185744788569
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 35
+        nsecs: 937000000
+      frame_id: "map"
+    traj_index: 2
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 2
+        position: 
+          x: 0.237238837667
+          y: 0.175523877557
+          z: 0.0190653737591
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 2
+        position: 
+          x: -0.222412428053
+          y: 0.174480053294
+          z: 0.056667467597
+        velocity: 
+          x: -0.202039043656
+          y: -0.0355142550301
+          z: 0.761858994456
+        acceleration: 
+          x: -1.68365869713
+          y: -0.295952125251
+          z: -12.6976499076
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 2
+        position: 
+          x: 0.230081245694
+          y: -0.174605709929
+          z: 0.0567947269037
+        velocity: 
+          x: -0.202357077798
+          y: 0.0349015537914
+          z: 0.754587034077
+        acceleration: 
+          x: -1.68630898165
+          y: 0.290846281595
+          z: -12.5764505679
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 2
+        position: 
+          x: -0.215413992028
+          y: -0.175820798799
+          z: 0.0185744788569
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 35
+        nsecs: 967000000
+      frame_id: "map"
+    traj_index: 3
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 3
+        position: 
+          x: 0.237238837667
+          y: 0.175523877557
+          z: 0.0190653737591
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 3
+        position: 
+          x: -0.228978696972
+          y: 0.173325840005
+          z: 0.07
+        velocity: 
+          x: -0.227293924113
+          y: -0.0399535369089
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: -1.55431223448e-15
+          z: -37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 3
+        position: 
+          x: 0.223504640666
+          y: -0.17347140943
+          z: 0.07
+        velocity: 
+          x: -0.227651712522
+          y: 0.0392642480154
+          z: 0.0
+        acceleration: 
+          x: -1.7763568394e-15
+          y: -1.7763568394e-15
+          z: -37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 3
+        position: 
+          x: -0.215413992028
+          y: -0.175820798799
+          z: 0.0185744788569
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 35
+        nsecs: 997000000
+      frame_id: "map"
+    traj_index: 4
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 4
+        position: 
+          x: 0.237238837667
+          y: 0.175523877557
+          z: 0.0190653737591
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 4
+        position: 
+          x: -0.23554496589
+          y: 0.172171626717
+          z: 0.057037037037
+        velocity: 
+          x: -0.202039043656
+          y: -0.0355142550301
+          z: -0.740740740741
+        acceleration: 
+          x: 1.68365869713
+          y: 0.295952125251
+          z: -12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 4
+        position: 
+          x: 0.216928035638
+          y: -0.172337108932
+          z: 0.057037037037
+        velocity: 
+          x: -0.202357077798
+          y: 0.0349015537914
+          z: -0.740740740741
+        acceleration: 
+          x: 1.68630898165
+          y: -0.290846281595
+          z: -12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 4
+        position: 
+          x: -0.215413992028
+          y: -0.175820798799
+          z: 0.0185744788569
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs:  27000000
+      frame_id: "map"
+    traj_index: 5
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 5
+        position: 
+          x: 0.237238837667
+          y: 0.175523877557
+          z: 0.0190653737591
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 5
+        position: 
+          x: -0.240595941982
+          y: 0.171283770341
+          z: 0.032962962963
+        velocity: 
+          x: -0.126274402285
+          y: -0.0221964093938
+          z: -0.740740740741
+        acceleration: 
+          x: 3.36731739426
+          y: 0.591904250502
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 5
+        position: 
+          x: 0.211869108693
+          y: -0.171464570087
+          z: 0.032962962963
+        velocity: 
+          x: -0.126473173624
+          y: 0.0218134711196
+          z: -0.740740740741
+        acceleration: 
+          x: 3.37261796329
+          y: -0.58169256319
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 5
+        position: 
+          x: -0.215413992028
+          y: -0.175820798799
+          z: 0.0185744788569
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs:  57000000
+      frame_id: "map"
+    traj_index: 6
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 6
+        position: 
+          x: 0.237238837667
+          y: 0.175523877557
+          z: 0.0190653737591
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -1.74705551278
+          y: -0.865590557615
+          z: 37.729352771
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 6
+        position: 
+          x: -0.242616332418
+          y: 0.170928627791
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 5.05097609139
+          y: 0.887856375753
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 6
+        position: 
+          x: 0.209845537915
+          y: -0.17111555455
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 5.05892694494
+          y: -0.872538844786
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 6
+        position: 
+          x: -0.215413992028
+          y: -0.175820798799
+          z: 0.0185744788569
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -1.73680216239
+          y: 0.886020523998
+          z: 38.0929786245
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs:  87000000
+      frame_id: "map"
+    traj_index: 7
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 7
+        position: 
+          x: 0.236540015462
+          y: 0.175177641334
+          z: 0.032270647229
+        velocity: 
+          x: -0.0436763878196
+          y: -0.0216397639404
+          z: 0.75458705542
+        acceleration: 
+          x: -1.16470367519
+          y: -0.577060371743
+          z: 12.5764509237
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 7
+        position: 
+          x: -0.242616332418
+          y: 0.170928627791
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 7
+        position: 
+          x: 0.209845537915
+          y: -0.17111555455
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 7
+        position: 
+          x: -0.216108712893
+          y: -0.17546639059
+          z: 0.0319070213755
+        velocity: 
+          x: -0.0434200540598
+          y: 0.0221505131
+          z: 0.761859572491
+        acceleration: 
+          x: -1.15786810826
+          y: 0.590680349332
+          z: 12.6976595415
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 117000000
+      frame_id: "map"
+    traj_index: 8
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 8
+        position: 
+          x: 0.234792959949
+          y: 0.174312050776
+          z: 0.0567947265301
+        velocity: 
+          x: -0.0698822205113
+          y: -0.0346236223046
+          z: 0.75458705542
+        acceleration: 
+          x: -0.582351837594
+          y: -0.288530185872
+          z: -12.5764509237
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 8
+        position: 
+          x: -0.242616332418
+          y: 0.170928627791
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 8
+        position: 
+          x: 0.209845537915
+          y: -0.17111555455
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 8
+        position: 
+          x: -0.217845515055
+          y: -0.174580370066
+          z: 0.0566674574814
+        velocity: 
+          x: -0.0694720864956
+          y: 0.0354408209599
+          z: 0.761859572491
+        acceleration: 
+          x: -0.57893405413
+          y: 0.295340174666
+          z: -12.6976595415
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 147000000
+      frame_id: "map"
+    traj_index: 9
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 9
+        position: 
+          x: 0.232521787782
+          y: 0.173186783051
+          z: 0.07
+        velocity: 
+          x: -0.0786174980752
+          y: -0.0389515750927
+          z: 0.0
+        acceleration: 
+          x: 1.7763568394e-15
+          y: 1.11022302463e-16
+          z: -37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 9
+        position: 
+          x: -0.242616332418
+          y: 0.170928627791
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 9
+        position: 
+          x: 0.209845537915
+          y: -0.17111555455
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 9
+        position: 
+          x: -0.220103357866
+          y: -0.173428543384
+          z: 0.07
+        velocity: 
+          x: -0.0781560973076
+          y: 0.0398709235799
+          z: 0.0
+        acceleration: 
+          x: 3.5527136788e-15
+          y: -1.7763568394e-15
+          z: -37.037037037
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 177000000
+      frame_id: "map"
+    traj_index: 10
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 10
+        position: 
+          x: 0.230250615616
+          y: 0.172061515326
+          z: 0.057037037037
+        velocity: 
+          x: -0.0698822205113
+          y: -0.0346236223046
+          z: -0.740740740741
+        acceleration: 
+          x: 0.582351837594
+          y: 0.288530185872
+          z: -12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 10
+        position: 
+          x: -0.242616332418
+          y: 0.170928627791
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 10
+        position: 
+          x: 0.209845537915
+          y: -0.17111555455
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 10
+        position: 
+          x: -0.222361200677
+          y: -0.172276716703
+          z: 0.057037037037
+        velocity: 
+          x: -0.0694720864956
+          y: 0.0354408209599
+          z: -0.740740740741
+        acceleration: 
+          x: 0.57893405413
+          y: -0.295340174666
+          z: -12.3456790123
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 207000000
+      frame_id: "map"
+    traj_index: 11
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 11
+        position: 
+          x: 0.228503560103
+          y: 0.171195924769
+          z: 0.032962962963
+        velocity: 
+          x: -0.0436763878196
+          y: -0.0216397639404
+          z: -0.740740740741
+        acceleration: 
+          x: 1.16470367519
+          y: 0.577060371743
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 11
+        position: 
+          x: -0.242616332418
+          y: 0.170928627791
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 11
+        position: 
+          x: 0.209845537915
+          y: -0.17111555455
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 11
+        position: 
+          x: -0.22409800284
+          y: -0.171390696179
+          z: 0.032962962963
+        velocity: 
+          x: -0.0434200540598
+          y: 0.0221505131
+          z: -0.740740740741
+        acceleration: 
+          x: 1.15786810826
+          y: -0.590680349332
+          z: 12.3456790123
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 237000000
+      frame_id: "map"
+    traj_index: 12
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 12
+        position: 
+          x: 0.227804737898
+          y: 0.170849688546
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 1.74705551278
+          y: 0.865590557615
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 12
+        position: 
+          x: -0.242616332418
+          y: 0.170928627791
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 8.25757146539
+          y: -0.00171286800959
+          z: 37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 12
+        position: 
+          x: 0.209845537915
+          y: -0.17111555455
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 8.26561312987
+          y: 0.00191199947919
+          z: 37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 12
+        position: 
+          x: -0.224792723705
+          y: -0.17103628797
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 1.73680216239
+          y: -0.886020523998
+          z: 37.037037037
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 267000000
+      frame_id: "map"
+    traj_index: 13
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 13
+        position: 
+          x: 0.227804737898
+          y: 0.170849688546
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 13
+        position: 
+          x: -0.239313303832
+          y: 0.170927942644
+          z: 0.032962962963
+        velocity: 
+          x: 0.206439286635
+          y: -4.28217002397e-05
+          z: 0.740740740741
+        acceleration: 
+          x: 5.50504764359
+          y: -0.00114191200639
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 13
+        position: 
+          x: 0.213151783167
+          y: -0.17111478975
+          z: 0.032962962963
+        velocity: 
+          x: 0.206640328247
+          y: 4.77999869797e-05
+          z: 0.740740740741
+        acceleration: 
+          x: 5.51040875324
+          y: 0.00127466631946
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 13
+        position: 
+          x: -0.224792723705
+          y: -0.17103628797
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 297000000
+      frame_id: "map"
+    traj_index: 14
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 14
+        position: 
+          x: 0.227804737898
+          y: 0.170849688546
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 14
+        position: 
+          x: -0.231055732367
+          y: 0.170926229776
+          z: 0.057037037037
+        velocity: 
+          x: 0.330302858616
+          y: -6.85147203836e-05
+          z: 0.740740740741
+        acceleration: 
+          x: 2.7525238218
+          y: -0.000570956003197
+          z: -12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 14
+        position: 
+          x: 0.221417396296
+          y: -0.17111287775
+          z: 0.057037037037
+        velocity: 
+          x: 0.330624525195
+          y: 7.64799791676e-05
+          z: 0.740740740741
+        acceleration: 
+          x: 2.75520437662
+          y: 0.000637333159732
+          z: -12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 14
+        position: 
+          x: -0.224792723705
+          y: -0.17103628797
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 327000000
+      frame_id: "map"
+    traj_index: 15
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 15
+        position: 
+          x: 0.227804737898
+          y: 0.170849688546
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 15
+        position: 
+          x: -0.220320889462
+          y: 0.170924003047
+          z: 0.07
+        velocity: 
+          x: 0.371590715943
+          y: -7.70790604315e-05
+          z: 0.0
+        acceleration: 
+          x: 1.7763568394e-15
+          y: 2.16840434497e-19
+          z: -37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 15
+        position: 
+          x: 0.232162693365
+          y: -0.171110392151
+          z: 0.07
+        velocity: 
+          x: 0.371952590844
+          y: 8.60399765636e-05
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 3.42629570549e-15
+          z: -37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 15
+        position: 
+          x: -0.224792723705
+          y: -0.17103628797
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 357000000
+      frame_id: "map"
+    traj_index: 16
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 16
+        position: 
+          x: 0.227804737898
+          y: 0.170849688546
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 16
+        position: 
+          x: -0.209586046557
+          y: 0.170921776319
+          z: 0.057037037037
+        velocity: 
+          x: 0.330302858616
+          y: -6.85147203836e-05
+          z: -0.740740740741
+        acceleration: 
+          x: -2.7525238218
+          y: 0.000570956003197
+          z: -12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 16
+        position: 
+          x: 0.242907990434
+          y: -0.171107906552
+          z: 0.057037037037
+        velocity: 
+          x: 0.330624525195
+          y: 7.64799791678e-05
+          z: -0.740740740741
+        acceleration: 
+          x: -2.75520437662
+          y: -0.000637333159725
+          z: -12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 16
+        position: 
+          x: -0.224792723705
+          y: -0.17103628797
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 387000000
+      frame_id: "map"
+    traj_index: 17
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 17
+        position: 
+          x: 0.227804737898
+          y: 0.170849688546
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 17
+        position: 
+          x: -0.201328475091
+          y: 0.170920063451
+          z: 0.032962962963
+        velocity: 
+          x: 0.206439286635
+          y: -4.28217002397e-05
+          z: -0.740740740741
+        acceleration: 
+          x: -5.50504764359
+          y: 0.00114191200639
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 17
+        position: 
+          x: 0.251173603564
+          y: -0.171105994552
+          z: 0.032962962963
+        velocity: 
+          x: 0.206640328247
+          y: 4.77999869801e-05
+          z: -0.740740740741
+        acceleration: 
+          x: -5.51040875324
+          y: -0.00127466631945
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 17
+        position: 
+          x: -0.224792723705
+          y: -0.17103628797
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 417000000
+      frame_id: "map"
+    traj_index: 18
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 18
+        position: 
+          x: 0.227804737898
+          y: 0.170849688546
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 11.3008957995
+          y: 0.00157352305897
+          z: 37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 18
+        position: 
+          x: -0.198025446505
+          y: 0.170919378303
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -8.25757146539
+          y: 0.00171286800959
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 18
+        position: 
+          x: 0.254479848816
+          y: -0.171105229752
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -8.26561312987
+          y: -0.00191199947918
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 18
+        position: 
+          x: -0.224792723705
+          y: -0.17103628797
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 11.2993829243
+          y: -0.00123378731911
+          z: 37.037037037
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 447000000
+      frame_id: "map"
+    traj_index: 19
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 19
+        position: 
+          x: 0.232325096217
+          y: 0.170850317955
+          z: 0.032962962963
+        velocity: 
+          x: 0.282522394988
+          y: 3.93380764742e-05
+          z: 0.740740740741
+        acceleration: 
+          x: 7.53393053301
+          y: 0.00104901537265
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 19
+        position: 
+          x: -0.198025446505
+          y: 0.170919378303
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 19
+        position: 
+          x: 0.254479848816
+          y: -0.171105229752
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 19
+        position: 
+          x: -0.220272970535
+          y: -0.171036781485
+          z: 0.032962962963
+        velocity: 
+          x: 0.282484573107
+          y: -3.08446829778e-05
+          z: 0.740740740741
+        acceleration: 
+          x: 7.53292194952
+          y: -0.000822524879409
+          z: 12.3456790123
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 477000000
+      frame_id: "map"
+    traj_index: 20
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 20
+        position: 
+          x: 0.243625992017
+          y: 0.170851891478
+          z: 0.057037037037
+        velocity: 
+          x: 0.45203583198
+          y: 6.29409223587e-05
+          z: 0.740740740741
+        acceleration: 
+          x: 3.7669652665
+          y: 0.00052450768632
+          z: -12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 20
+        position: 
+          x: -0.198025446505
+          y: 0.170919378303
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 20
+        position: 
+          x: 0.254479848816
+          y: -0.171105229752
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 20
+        position: 
+          x: -0.208973587611
+          y: -0.171038015272
+          z: 0.057037037037
+        velocity: 
+          x: 0.451975316971
+          y: -4.93514927645e-05
+          z: 0.740740740741
+        acceleration: 
+          x: 3.76646097476
+          y: -0.000411262439704
+          z: -12.3456790123
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 507000000
+      frame_id: "map"
+    traj_index: 21
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 21
+        position: 
+          x: 0.258317156556
+          y: 0.170853937058
+          z: 0.07
+        velocity: 
+          x: 0.508540310978
+          y: 7.08085376534e-05
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: -5.14020249975e-15
+          z: -37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 21
+        position: 
+          x: -0.198025446505
+          y: 0.170919378303
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 21
+        position: 
+          x: 0.254479848816
+          y: -0.171105229752
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 21
+        position: 
+          x: -0.194284389809
+          y: -0.171039619195
+          z: 0.07
+        velocity: 
+          x: 0.508472231593
+          y: -5.55204293601e-05
+          z: 0.0
+        acceleration: 
+          x: 1.7763568394e-15
+          y: 1.7134731134e-15
+          z: -37.037037037
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 537000000
+      frame_id: "map"
+    traj_index: 22
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 22
+        position: 
+          x: 0.273008321096
+          y: 0.170855982638
+          z: 0.057037037037
+        velocity: 
+          x: 0.45203583198
+          y: 6.29409223584e-05
+          z: -0.740740740741
+        acceleration: 
+          x: -3.7669652665
+          y: -0.00052450768633
+          z: -12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 22
+        position: 
+          x: -0.198025446505
+          y: 0.170919378303
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 22
+        position: 
+          x: 0.254479848816
+          y: -0.171105229752
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 22
+        position: 
+          x: -0.179595192007
+          y: -0.171041223119
+          z: 0.057037037037
+        velocity: 
+          x: 0.451975316971
+          y: -4.93514927644e-05
+          z: -0.740740740741
+        acceleration: 
+          x: -3.76646097476
+          y: 0.000411262439707
+          z: -12.3456790123
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 567000000
+      frame_id: "map"
+    traj_index: 23
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 23
+        position: 
+          x: 0.284309216895
+          y: 0.170857556161
+          z: 0.032962962963
+        velocity: 
+          x: 0.282522394988
+          y: 3.93380764736e-05
+          z: -0.740740740741
+        acceleration: 
+          x: -7.53393053301
+          y: -0.00104901537266
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 23
+        position: 
+          x: -0.198025446505
+          y: 0.170919378303
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 23
+        position: 
+          x: 0.254479848816
+          y: -0.171105229752
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 23
+        position: 
+          x: -0.168295809083
+          y: -0.171042456906
+          z: 0.032962962963
+        velocity: 
+          x: 0.282484573107
+          y: -3.08446829776e-05
+          z: -0.740740740741
+        acceleration: 
+          x: -7.53292194952
+          y: 0.000822524879412
+          z: 12.3456790123
+        contact: False
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 597000000
+      frame_id: "map"
+    traj_index: 24
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 24
+        position: 
+          x: 0.288829575215
+          y: 0.17085818557
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -11.3008957995
+          y: -0.00157352305898
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 24
+        position: 
+          x: -0.198025446505
+          y: 0.170919378303
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 13.826335446
+          y: -0.000251727006284
+          z: 37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 24
+        position: 
+          x: 0.254479848816
+          y: -0.171105229752
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 13.8286839227
+          y: 0.000938865946969
+          z: 37.037037037
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 24
+        position: 
+          x: -0.163776055913
+          y: -0.171042950421
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -11.2993829243
+          y: 0.00123378731912
+          z: 37.037037037
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 36
+        nsecs: 627000000
+      frame_id: "map"
+    traj_index: 25
+    feet: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 25
+        position: 
+          x: 0.288829575215
+          y: 0.17085818557
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 25
+        position: 
+          x: -0.192494912327
+          y: 0.170919277613
+          z: 0.032962962963
+        velocity: 
+          x: 0.345658386151
+          y: -6.2931751571e-06
+          z: 0.740740740741
+        acceleration: 
+          x: 9.21755696402
+          y: -0.00016781800419
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 25
+        position: 
+          x: 0.260011322385
+          y: -0.171104854206
+          z: 0.032962962963
+        velocity: 
+          x: 0.345717098068
+          y: 2.34716486742e-05
+          z: 0.740740740741
+        acceleration: 
+          x: 9.21912261515
+          y: 0.000625910631313
+          z: 12.3456790123
+        contact: False
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 35
+            nsecs: 877000000
+          frame_id: "map"
+        traj_index: 25
+        position: 
+          x: -0.163776055913
+          y: -0.171042950421
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        contact: True
+---
