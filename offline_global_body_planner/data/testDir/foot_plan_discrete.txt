@@ -1,0 +1,208 @@
+header: 
+  seq: 0
+  stamp: 
+    secs: 119
+    nsecs: 722000000
+  frame_id: "map"
+feet: 
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 119
+        nsecs: 708000000
+      frame_id: "map"
+    footholds: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 119
+            nsecs: 708000000
+          frame_id: "map"
+        traj_index: 12
+        position: 
+          x: 0.15010299365
+          y: 0.199004314522
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 4.38556871961
+          y: -0.316989974732
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 119
+            nsecs: 708000000
+          frame_id: "map"
+        traj_index: 24
+        position: 
+          x: 0.212031800837
+          y: 0.196960994641
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -11.4682976272
+          y: 0.378392570543
+          z: 37.037037037
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 119
+        nsecs: 708000000
+      frame_id: "map"
+    footholds: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 119
+            nsecs: 708000000
+          frame_id: "map"
+        traj_index: 6
+        position: 
+          x: -0.319666216405
+          y: 0.178228323931
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 8.52991476319
+          y: 5.27006337834
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 119
+            nsecs: 708000000
+          frame_id: "map"
+        traj_index: 18
+        position: 
+          x: -0.274062875603
+          y: 0.18071548643
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -8.44506311148
+          y: -0.460585647898
+          z: 37.037037037
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 119
+        nsecs: 708000000
+      frame_id: "map"
+    footholds: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 119
+            nsecs: 708000000
+          frame_id: "map"
+        traj_index: 6
+        position: 
+          x: 0.147985552868
+          y: -0.141273412343
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 6.33842793308
+          y: 1.64408127931
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 119
+            nsecs: 708000000
+          frame_id: "map"
+        traj_index: 18
+        position: 
+          x: 0.190440193659
+          y: -0.143940570494
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -7.86197051691
+          y: 0.493918176153
+          z: 37.037037037
+        contact: True
+  - 
+    header: 
+      seq: 0
+      stamp: 
+        secs: 119
+        nsecs: 708000000
+      frame_id: "map"
+    footholds: 
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 119
+            nsecs: 708000000
+          frame_id: "map"
+        traj_index: 12
+        position: 
+          x: -0.286475804293
+          y: -0.162096520309
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: 9.70293914985
+          y: -2.79570978104
+          z: 37.037037037
+        contact: True
+      - 
+        header: 
+          seq: 0
+          stamp: 
+            secs: 119
+            nsecs: 708000000
+          frame_id: "map"
+        traj_index: 24
+        position: 
+          x: -0.227926237345
+          y: -0.160386816758
+          z: 0.02
+        velocity: 
+          x: 0.0
+          y: 0.0
+          z: 0.0
+        acceleration: 
+          x: -10.8425123978
+          y: -0.316611768656
+          z: 37.037037037
+        contact: True
+---
