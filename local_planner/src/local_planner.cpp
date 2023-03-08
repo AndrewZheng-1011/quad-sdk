@@ -381,6 +381,7 @@ void LocalPlanner::getReference() {
     for (int i = 0; i < N_; i++) {
       // If the horizon extends past the reference trajectory, just hold the
       // last state
+      // TODO (AZ): Figure out wrapping/unwrapping here. print out here, etc.
       if (i + current_plan_index_ > body_plan_msg_->plan_indices.back()) {
         ref_body_plan_.row(i) =
             quad_utils::bodyStateMsgToEigen(body_plan_msg_->states.back().body);
