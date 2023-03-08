@@ -7,3 +7,4 @@ external/ipopt/*
 !external/ipopt/.gitkeep
 *.csv
 .clang-format
+./quad_simulator/quad_simulator/gazebo_scripts/worlds/terrain_map/*
