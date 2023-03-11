@@ -237,14 +237,14 @@ SOFTWARE.
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
       <material name="darkgray"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
       <surface>
         <friction>
@@ -451,14 +451,14 @@ SOFTWARE.
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
       <material name="darkgray"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
       <surface>
         <friction>
@@ -665,14 +665,14 @@ SOFTWARE.
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
       <material name="darkgray"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
       <surface>
         <friction>
@@ -879,14 +879,14 @@ SOFTWARE.
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
       <material name="darkgray"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <sphere radius="0.02"/>
+        <sphere radius="0.03"/>
       </geometry>
       <surface>
         <friction>

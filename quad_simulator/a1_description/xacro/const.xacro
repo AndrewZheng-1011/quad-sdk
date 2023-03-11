@@ -18,7 +18,7 @@
     <xacro:property name="thigh_height" value="0.034"/>
     <xacro:property name="calf_width" value="0.016"/>
     <xacro:property name="calf_height" value="0.016"/>
-    <xacro:property name="foot_radius" value="0.02"/>
+    <xacro:property name="foot_radius" value="0.03"/> <!-- Original: 0.02-->
     <xacro:property name="stick_radius" value="0.01"/>
     <xacro:property name="stick_length" value="0.2"/>
     <xacro:property name="toe_friction" value="0.2"/>

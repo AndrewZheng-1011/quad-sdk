@@ -8,7 +8,8 @@
   <arg name="dash" default="false" />
   <arg name="world" default="flat" />
   <arg name="logging" default="false" />
-  <arg name="init_pose" default="-x -1.25 -y -1 -z 0.5 -Y 0"/> <!-- -Y 3.1415926535897" /-->
+  <arg name="init_pose" default="-x 1.25 -y -0.55 -z 0.5 -Y 0"/> <!-- Crate section: -x -1.25 -y -1 -z 0.5 -Y 0 | After crate section: 1.25, -0.55, 0.5/-->
+  <arg name="input_type" default="mesh" />
   <param name="/use_sim_time" value="true" />
 
   <!-- Launch the Quad world with specific physics parameters -->
@@ -21,7 +22,7 @@
   </include>
 
   <include file="$(find quad_utils)/launch/mapping.launch">
-    <arg name="input_type" value="mesh" />
+    <arg name="input_type" value="$(arg input_type)" />
     <arg name="world" value="$(arg world)" />
     <arg name="robot_type" value="$(arg robot_type)" />
   </include>

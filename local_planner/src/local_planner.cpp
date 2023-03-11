@@ -108,6 +108,9 @@ LocalPlanner::LocalPlanner(ros::NodeHandle nh)
 
   // Initialize the plan index
   current_plan_index_ = 0;
+
+  // Initialize first ref plan
+  first_ref_plan = true;
 }
 
 void LocalPlanner::initLocalBodyPlanner() {
@@ -251,6 +254,7 @@ void LocalPlanner::getReference() {
                            first_element_duration_);
   plan_index_diff_ = current_plan_index_ - previous_plan_index;
 
+  // TODO (AZ): Look into footstep here
   // Get the current body and foot positions into Eigen
   current_state_ = quad_utils::bodyStateMsgToEigen(robot_state_msg_->body);
   current_state_timestamp_ = robot_state_msg_->header.stamp;
@@ -332,6 +336,7 @@ void LocalPlanner::getReference() {
     ref_body_plan_(0, 9) = cmd_vel_[3];
     ref_body_plan_(0, 10) = cmd_vel_[4];
     ref_body_plan_(0, 11) = cmd_vel_[5];
+    // std::cout << "current_state_[5]: " << current_state_[5] << std::endl;
 
     // Alternatively only adaptive pitch
     // ref_body_plan_(0, 4) = local_footstep_planner_->getTerrainSlope(
@@ -381,7 +386,6 @@ void LocalPlanner::getReference() {
     for (int i = 0; i < N_; i++) {
       // If the horizon extends past the reference trajectory, just hold the
       // last state
-      // TODO (AZ): Figure out wrapping/unwrapping here. print out here, etc.
       if (i + current_plan_index_ > body_plan_msg_->plan_indices.back()) {
         ref_body_plan_.row(i) =
             quad_utils::bodyStateMsgToEigen(body_plan_msg_->states.back().body);
@@ -399,6 +403,39 @@ void LocalPlanner::getReference() {
       ref_ground_height_(i) = local_footstep_planner_->getTerrainHeight(
           ref_body_plan_(i, 0), ref_body_plan_(i, 1));
     }
+
+
+    // Unwrap yaw angle for NMPC
+    Eigen::VectorXd eig_unwrapped_yaw_ref = ref_body_plan_.col(5);
+    
+    std::vector<double> wrapped_yaw_ref, unwrapped_yaw_ref;
+    quad_utils::eigenToVector(eig_unwrapped_yaw_ref, wrapped_yaw_ref);
+
+    // If first plan, keep nominal yaw, else align initial yaw state with previous horizon's last yaw state 
+    if (!first_ref_plan) {
+      double diff = wrapped_yaw_ref[0] - prev_unwrapped_yaw;
+      // std::cout << "previous yaw: " << prev_unwrapped_yaw << std::endl;
+      // std::cout << "current yaw: " << wrapped_yaw_ref[0] << std::endl;
+      // std::cout << "diff: " << diff << std::endl;
+      if (diff > M_PI) {
+        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] - 2*M_PI;
+      } else if (diff < -M_PI) {
+        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] + 2*M_PI;
+      }
+      // std::cout << "new current yaw: " << wrapped_yaw_ref[0] << std::endl;
+    } else {
+      first_ref_plan = false;
+    } 
+    unwrapped_yaw_ref = math_utils::unwrap(wrapped_yaw_ref); // Let math_utils handle unwrapping all yaw state in horizon
+    prev_unwrapped_yaw = unwrapped_yaw_ref[N_ - 1];
+
+
+    quad_utils::vectorToEigen(unwrapped_yaw_ref, eig_unwrapped_yaw_ref); // Convert to eigen
+
+    // Insert unwrapped yaw into ref_body_plan_
+    ref_body_plan_.col(5) = eig_unwrapped_yaw_ref;
+
+
     ref_ground_height_(0) = local_footstep_planner_->getTerrainHeight(
         current_state_(0), current_state_(1));
 

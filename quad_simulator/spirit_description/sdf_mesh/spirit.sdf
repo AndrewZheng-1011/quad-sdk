@@ -935,7 +935,7 @@ SOFTWARE.
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.03</radius>
           </sphere>
         </geometry>
         <surface>
@@ -983,7 +983,7 @@ SOFTWARE.
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.03</radius>
           </sphere>
         </geometry>
         <material>
@@ -1019,7 +1019,7 @@ SOFTWARE.
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.03</radius>
           </sphere>
         </geometry>
         <surface>
@@ -1067,7 +1067,7 @@ SOFTWARE.
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.03</radius>
           </sphere>
         </geometry>
         <material>
@@ -1103,7 +1103,7 @@ SOFTWARE.
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.03</radius>
           </sphere>
         </geometry>
         <surface>
@@ -1151,7 +1151,7 @@ SOFTWARE.
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.03</radius>
           </sphere>
         </geometry>
         <material>
@@ -1187,7 +1187,7 @@ SOFTWARE.
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.03</radius>
           </sphere>
         </geometry>
         <surface>
@@ -1235,7 +1235,7 @@ SOFTWARE.
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <sphere>
-            <radius>0.02</radius>
+            <radius>0.03</radius>
           </sphere>
         </geometry>
         <material>

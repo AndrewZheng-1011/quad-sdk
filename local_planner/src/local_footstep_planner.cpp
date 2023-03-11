@@ -286,6 +286,7 @@ void LocalFootstepPlanner::computeFootPlan(
         foot_position_nominal = foot_position_raibert;
         grid_map::Position foot_position_grid_map = {foot_position_nominal.x(),
                                                      foot_position_nominal.y()};
+        // TODO (AZ): Use if statement to output footposition of Raibert for foot j
 
         if (!terrain_grid_.isInside(foot_position_grid_map)) {
           ROS_WARN(
@@ -306,6 +307,12 @@ void LocalFootstepPlanner::computeFootPlan(
             foot_positions.block<1, 3>(i, 3 * j);
         foot_position = getNearestValidFoothold(foot_position_nominal,
                                                 foot_position_previous);
+        // std::cout << "Horizon " << i << " prev foothold:\n" << foot_position_previous << std::endl;
+        // std::cout << "Horizon " << i << " new foothold:\n" << foot_position << std::endl;
+        if ((foot_position - foot_position_previous).norm() > 0.025) {
+          // std::cout << "Euclidean distance between new pos and previous position: " << (foot_position-foot_position_previous).norm() << std::endl;
+          // ROS_WARN("Previous foot position and new foot position distance exceed 0.025");
+        }
 
         // Store foot position in the Eigen matrix
         foot_positions.block<1, 3>(i, 3 * j) = foot_position;
@@ -733,7 +740,7 @@ double LocalFootstepPlanner::computeSwingApex(
   quadKD_->worldToLegbaseFKWorldFrame(leg_idx, body_plan.segment(0, 3),
                                       body_plan.segment(3, 3), g_world_legbase);
   double hip_height = g_world_legbase(2, 3);
-  double max_extension = 0.35;
+  double max_extension = 0.30; // Original value: 0.35
 
   // Compute swing apex
   double swing_apex =

@@ -216,7 +216,7 @@ NMPCController::NMPCController(ros::NodeHandle &nh, int robot_id) {
 
   app_->Options()->SetStringValue("print_timing_statistics", "no");
   app_->Options()->SetStringValue("linear_solver", "ma57");
-  app_->Options()->SetIntegerValue("print_level", 0);
+  app_->Options()->SetIntegerValue("print_level", 0); // Original: 0
   app_->Options()->SetNumericValue("ma57_pre_alloc", 1.5);
   app_->Options()->SetStringValue("fixed_variable_treatment",
                                   "make_parameter_nodual");
@@ -228,8 +228,8 @@ NMPCController::NMPCController(ros::NodeHandle &nh, int robot_id) {
   app_->Options()->SetNumericValue("warm_start_slack_bound_push", 1e-6);
   app_->Options()->SetNumericValue("warm_start_mult_bound_push", 1e-6);
 
-  app_->Options()->SetNumericValue("max_wall_time", 4.0 * dt_);
-  app_->Options()->SetNumericValue("max_cpu_time", 4.0 * dt_);
+  app_->Options()->SetNumericValue("max_wall_time", 4.0 * dt_); // Original value: 4.0*dt_
+  app_->Options()->SetNumericValue("max_cpu_time", 4.0 * dt_); // Original value: 4.0*dt_
 
   ApplicationReturnStatus status;
   status = app_->Initialize();
@@ -260,12 +260,16 @@ bool NMPCController::computeLegPlan(
   mynlp_->foot_vel_world_ = foot_velocities_world;
   mynlp_->terrain_ = terrain;
 
+  // std::cout << "Reference trajectory:\n" << ref_traj << std::endl;
+  
+  // Update solver (e.g. reference trajectory, reference control, etc.)
   mynlp_->update_solver(initial_state, ref_traj, foot_positions_body,
                         contact_schedule, adaptive_complexity_schedule_,
                         ref_ground_height, first_element_duration,
                         plan_index_diff, require_init_);
   require_init_ = false;
 
+  // Use solver
   bool success = this->computePlan(initial_state, ref_traj, contact_schedule,
                                    foot_positions_world, foot_velocities_world,
                                    state_traj, control_traj);
