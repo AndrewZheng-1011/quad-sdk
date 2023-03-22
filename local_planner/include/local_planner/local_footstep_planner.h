@@ -250,6 +250,14 @@ class LocalFootstepPlanner {
     return future_body_plan;
   }
 
+
+  // AZ added
+  /// Records the previous ref body angular vel touchdown
+  Eigen::Vector3d prev_ref_body_ang_vel_touchdown;
+
+  /// First reference footstep plan
+  bool first_ref_plan;
+
  private:
   /**
    * @brief Update the continuous foot plan to match the discrete

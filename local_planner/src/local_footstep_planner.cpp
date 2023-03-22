@@ -254,9 +254,11 @@ void LocalFootstepPlanner::computeFootPlan(
         hip_position_midstance = welzlMinimumCircle(P, R);
 
         // Get touchdown information for body state
-        body_vel_touchdown = body_plan.block<1, 3>(i, 6);
+        // std::cout << "Body plan row: " << body_plan.rows() << std::endl; // Row: 26
+        // std::cout << "Body plan col: " << body_plan.cols() << std::endl; // Col: 12
+        body_vel_touchdown = body_plan.block<1, 3>(i, 6); // Col 6 -> Velocities xyz
         ref_body_vel_touchdown = ref_body_plan.block<1, 3>(i, 6);
-        body_ang_vel_touchdown = body_plan.block<1, 3>(i, 9);
+        body_ang_vel_touchdown = body_plan.block<1, 3>(i, 9); // Col 9 -> Ang velocities xyz
         ref_body_ang_vel_touchdown = ref_body_plan.block<1, 3>(i, 9);
 
         // Compute dynamic shift
@@ -268,6 +270,22 @@ void LocalFootstepPlanner::computeFootPlan(
         // Ref: Highly Dynamic Quadruped Locomotion via Whole-Body Impulse
         // Control and Model Predictive Control (Centrifugal force and capture
         // point)
+        if (j==0) { // Look @ only 1 foot
+          // std::cout << "Difference is: " << (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm() << std::endl;
+          if (!first_ref_plan) {
+            double diff = (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm();
+            // std::cout << "Diff: " << diff << std::endl;
+            if (diff > 0.05) {
+              ROS_WARN("High angular velocity touch difference!");
+              // std::cout << "Difference is: " << (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm() << std::endl;
+              // std::cout << "ref_body_ang_vel_touchdown: " << ref_body_ang_vel_touchdown << std::endl;
+            }
+          }
+          else{
+            first_ref_plan = false;
+          }
+          prev_ref_body_ang_vel_touchdown = ref_body_ang_vel_touchdown;
+        }
         centrifugal = body_height_touchdown / 9.81 *
                       body_vel_touchdown.cross(ref_body_ang_vel_touchdown);
         // Ref: MIT Cheetah 3: Design and Control of a Robust, Dynamic Quadruped
@@ -281,9 +299,18 @@ void LocalFootstepPlanner::computeFootPlan(
 
         // Combine these measures to get the nominal foot position and grab
         // correct height
+        if (j==0) {
+          // TODO (AZ) : Check numbers here
+          // std::cout << "hip_position_midstance: " << hip_position_midstance << std::endl;
+          // std::cout << "centrifugal: " << centrifugal << std::endl;
+          // std::cout << "vel_tracking: " << vel_tracking << std::endl;
+        }
         foot_position_raibert =
             hip_position_midstance + centrifugal + vel_tracking;
         foot_position_nominal = foot_position_raibert;
+        // if (j == 0) {
+        //   std::cout << "foot_position_nominal feet " << j << ": " << foot_position_nominal << std::endl;
+        // }
         grid_map::Position foot_position_grid_map = {foot_position_nominal.x(),
                                                      foot_position_nominal.y()};
         // TODO (AZ): Use if statement to output footposition of Raibert for foot j
@@ -307,11 +334,14 @@ void LocalFootstepPlanner::computeFootPlan(
             foot_positions.block<1, 3>(i, 3 * j);
         foot_position = getNearestValidFoothold(foot_position_nominal,
                                                 foot_position_previous);
+        // foot_position = foot_position_nominal;
         // std::cout << "Horizon " << i << " prev foothold:\n" << foot_position_previous << std::endl;
         // std::cout << "Horizon " << i << " new foothold:\n" << foot_position << std::endl;
-        if ((foot_position - foot_position_previous).norm() > 0.025) {
+        if (j==0) {
+          if ((foot_position - foot_position_previous).norm() > 0.025) {
           // std::cout << "Euclidean distance between new pos and previous position: " << (foot_position-foot_position_previous).norm() << std::endl;
           // ROS_WARN("Previous foot position and new foot position distance exceed 0.025");
+          }
         }
 
         // Store foot position in the Eigen matrix

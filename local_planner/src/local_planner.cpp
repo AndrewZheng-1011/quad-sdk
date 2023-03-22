@@ -1,5 +1,6 @@
 #include "local_planner/local_planner.h"
 #include <typeinfo>
+#include <math.h>
 
 Eigen::IOFormat CleanFmt(4, 0, ", ", "\n", "[", "]");
 
@@ -226,12 +227,14 @@ void LocalPlanner::getReference() {
     past_footholds_msg_ = robot_state_msg_->feet;
     // std::cout << "type feet: " << typeid(past_footholds_msg_).name()
     // << std::endl; // Type: quad_msg_MultiFootState
-    // std::cout << "feet size: " << past_footholds_msg_. << std::endl;
+    // std::cout << "feet msg: " << past_footholds_msg_ << std::endl; // Gets position of the current feet state
     past_footholds_msg_.traj_index = current_plan_index_;
     for (int i = 0; i < num_feet_; i++) {
       past_footholds_msg_.feet[i].header = past_footholds_msg_.header;
       past_footholds_msg_.feet[i].traj_index = past_footholds_msg_.traj_index;
     }
+
+    // std::cout << "feet msg after: " << past_footholds_msg_ << std::endl; // Same for global body plan
 
     // We want to start from a full period when using twist input
     if (use_twist_input_) {
@@ -250,9 +253,12 @@ void LocalPlanner::getReference() {
   // Get plan index, compare with the previous one to check if this is a
   // duplicated solve
   int previous_plan_index = current_plan_index_;
+  // std::cout << "First Element duration before: " << first_element_duration_ << std::endl; // Before: ~ 0.007, 0.017, & 0.027
   quad_utils::getPlanIndex(initial_timestamp_, dt_, current_plan_index_,
                            first_element_duration_);
+  // std::cout << "First Element duration after: " << first_element_duration_ << std::endl; // After: ~ 0.007, 0.017, & 0.027
   plan_index_diff_ = current_plan_index_ - previous_plan_index;
+  // std::cout << "plan_index_diff_ : " << plan_index_diff_ << std::endl; // 0 to 1
 
   // TODO (AZ): Look into footstep here
   // Get the current body and foot positions into Eigen
@@ -332,7 +338,7 @@ void LocalPlanner::getReference() {
                            cmd_vel_[1] * sin(current_state_[5]);
     ref_body_plan_(0, 7) = cmd_vel_[0] * sin(current_state_[5]) +
                            cmd_vel_[1] * cos(current_state_[5]);
-    ref_body_plan_(0, 8) = cmd_vel_[2];
+    ref_body_plan_(0, 8) = cmd_vel_[2]; // z component velocity
     ref_body_plan_(0, 9) = cmd_vel_[3];
     ref_body_plan_(0, 10) = cmd_vel_[4];
     ref_body_plan_(0, 11) = cmd_vel_[5];
@@ -349,10 +355,12 @@ void LocalPlanner::getReference() {
         ref_body_plan_(0, 3), ref_body_plan_(0, 4));
 
     // Integrate to get full body plan (Forward Euler)
-    for (int i = 1; i < N_; i++) {
+    // std::cout << "N_: " << N_ << std::endl;
+    for (int i = 1; i < N_; i++) { // N_ : 26
       Eigen::VectorXd current_cmd_vel = cmd_vel_;
 
       double yaw = ref_body_plan_(i - 1, 5);
+      // std::cout << "teleop yaw: " << yaw << std::endl;
       current_cmd_vel[0] = cmd_vel_[0] * cos(yaw) - cmd_vel_[1] * sin(yaw);
       current_cmd_vel[1] = cmd_vel_[0] * sin(yaw) + cmd_vel_[1] * cos(yaw);
 
@@ -413,14 +421,16 @@ void LocalPlanner::getReference() {
 
     // If first plan, keep nominal yaw, else align initial yaw state with previous horizon's last yaw state 
     if (!first_ref_plan) {
-      double diff = wrapped_yaw_ref[0] - prev_unwrapped_yaw;
+      float diff = wrapped_yaw_ref[0] - prev_unwrapped_yaw;
+      float quotient = round(diff/(2*M_PI));
+      // std::cout << "quotient: " << quotient << std::endl;
       // std::cout << "previous yaw: " << prev_unwrapped_yaw << std::endl;
       // std::cout << "current yaw: " << wrapped_yaw_ref[0] << std::endl;
-      // std::cout << "diff: " << diff << std::endl;
+      // std::cout << "diff: " << diff << std::endl; // 2PI if wrapping
       if (diff > M_PI) {
-        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] - 2*M_PI;
+        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] - quotient*2*M_PI;
       } else if (diff < -M_PI) {
-        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] + 2*M_PI;
+        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] + quotient*2*M_PI;
       }
       // std::cout << "new current yaw: " << wrapped_yaw_ref[0] << std::endl;
     } else {
@@ -429,17 +439,31 @@ void LocalPlanner::getReference() {
     unwrapped_yaw_ref = math_utils::unwrap(wrapped_yaw_ref); // Let math_utils handle unwrapping all yaw state in horizon
     prev_unwrapped_yaw = unwrapped_yaw_ref[N_ - 1];
 
-
     quad_utils::vectorToEigen(unwrapped_yaw_ref, eig_unwrapped_yaw_ref); // Convert to eigen
+    // std::cout << "Unwrapped yaw ref: " << eig_unwrapped_yaw_ref << std::endl;
 
+    
     // Insert unwrapped yaw into ref_body_plan_
     ref_body_plan_.col(5) = eig_unwrapped_yaw_ref;
+
+    // Update current state with unwrapped yaw
+    float diff_curr_state = current_state_(5) - prev_unwrapped_yaw;
+    float quotient_curr_state = round(diff_curr_state/(2*M_PI));
+
+    if (diff_curr_state > M_PI) { // Not the best solution due to multi-threading
+      current_state_(5) = current_state_(5) - quotient_curr_state*2*M_PI;
+    }
+    else {
+      current_state_(5) = current_state_(5) + quotient_curr_state*2*M_PI;
+    }
+    // std::cout << "yaw: " << current_state_(5) << std::endl;
 
 
     ref_ground_height_(0) = local_footstep_planner_->getTerrainHeight(
         current_state_(0), current_state_(1));
 
     // Stand if the plan has been tracked
+    // If current state and last of ref plan is the same... than plan is not moving -> go to stand mode
     if ((current_state_ - ref_body_plan_.bottomRows(1).transpose()).norm() <=
         stand_pos_error_threshold_) {
       control_mode_ = STAND;
@@ -448,6 +472,7 @@ void LocalPlanner::getReference() {
 
   // Update the body plan to use for foot planning
   int N_current_plan = body_plan_.rows();
+  // std::cout << "Size of body_plan_: " << N_current_plan << std::endl; // 26
   if (N_current_plan < N_) {
     // Cold start with reference plan
     body_plan_.conservativeResize(N_, 12);
@@ -460,6 +485,7 @@ void LocalPlanner::getReference() {
     }
   } else {
     // Only shift the foot position if it's a solve for a new plan index
+    // TODO (AZ): GET FOOT PoSITION PRINT OUT
     if (plan_index_diff_ > 0) {
       body_plan_.topRows(N_ - 1) = body_plan_.bottomRows(N_ - 1);
       grf_plan_.topRows(N_ - 2) = grf_plan_.bottomRows(N_ - 2);
@@ -487,6 +513,7 @@ bool LocalPlanner::computeLocalPlan() {
 
   // Start the timer
   quad_utils::FunctionTimer timer(__FUNCTION__);
+  // std::cout << "Current plan index: " << current_plan_index_ << std::endl;
 
   // Compute the contact schedule
 

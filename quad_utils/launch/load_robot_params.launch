@@ -12,8 +12,8 @@
 
     <group if="$(eval arg('robot_type') == 'a1')">
         <rosparam command="load" file="$(find quad_utils)/config/a1.yaml" />
-        <param name="robot_description_sdf" textfile="$(find a1_description)/sdf_mesh/a1_big_toe.sdf" />
-        <param name="robot_description" command="cat $(find a1_description)/urdf/a1_big_toe.urdf" />
+        <param name="robot_description_sdf" textfile="$(find a1_description)/sdf_mesh/a1.sdf" />
+        <param name="robot_description" command="cat $(find a1_description)/urdf/a1.urdf" />
     </group>
     <!-- Andrew Zheng added -->
     <group if="$(eval arg('robot_type') == 'go1')">

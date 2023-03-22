@@ -97,6 +97,11 @@ class NMPCController {
    */
   inline NLPDiagnostics getNLPDiagnostics() const { return diagnostics_; }
 
+  // AZ added
+  bool first_ref_plan;
+
+  double prev_unwrapped_yaw;
+
  private:
   /// ROS node handler
   ros::NodeHandle nh_;

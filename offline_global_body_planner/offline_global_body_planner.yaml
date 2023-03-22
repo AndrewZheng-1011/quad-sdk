@@ -22,6 +22,6 @@ offline_global_body_planner:
   # ctrl_file_path: "/home/dira/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj_4_obs.csv"  
   # state_file_path: "/home/dira/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj_3_obs.csv"
   # ctrl_file_path: "/home/dira/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj_3_obs.csv"  
-  state_file_path: "/home/dira/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/joseph_states_traj.csv"
-  ctrl_file_path: "/home/dira/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/joseph_ctrl_traj.csv" 
+  state_file_path: "/home/dira/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/states_traj_joseph.csv"
+  ctrl_file_path: "/home/dira/quad_sdk_ws/src/quad-sdk/offline_global_body_planner/data/ctrl_traj_joseph.csv" 
 
