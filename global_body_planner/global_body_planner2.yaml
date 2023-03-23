@@ -2,7 +2,7 @@ global_body_planner:
   update_rate: 20                         # Update rate of the ROS node (in Hz)
   num_calls: 1                            # Number of times to call the planner
   max_planning_time: 2.0                 # Maximum amount of time to run the planner | Original : 0.20
-  goal_state: [-4, -2] # [2.75, -1]                 # Nominal goal state (x/y coordinates) | Goal to end: [7, -1] | Waypoints: [-4 -2], [-1, -6], [7, -1]
+  goal_state: [-1, -6] # [2.75, -1]                 # Nominal goal state (x/y coordinates) | Goal to end: [7, -1]
   pos_error_threshold: 25                 # Error from planned state to trigger reset
   startup_delay: 2.0                      # Time to delay after starting node before planning
   replanning: true                        # Boolean to determine if replanning is allowed
@@ -17,4 +17,5 @@ global_body_planner:
   t_s_max: 0.25                           # Maximum stance time, s | Original value: 0.25
   dz0_min: 1.0                            # Minimum vertical velocity impulse, m/s
   dz0_max: 2.0                            # Maximum vertical velocity impulse, m/s
+
 

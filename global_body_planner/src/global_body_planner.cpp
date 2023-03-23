@@ -34,6 +34,8 @@ GlobalBodyPlanner::GlobalBodyPlanner(ros::NodeHandle nh) {
   quad_utils::loadROSParam(nh_, "/global_body_planner/goal_state",
                            goal_state_vec);
 
+  
+
   // Testing out what is in the params
   // std::cout << "body_plan_topic: " << body_plan_topic << std::endl; //
   // quad_utils config -> global_plan std::cout << "global_state_vec size: [" <<

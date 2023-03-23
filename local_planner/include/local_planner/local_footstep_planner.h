@@ -145,7 +145,8 @@ class LocalFootstepPlanner {
                        quad_msgs::MultiFootState &past_footholds_msg,
                        Eigen::MatrixXd &foot_positions,
                        Eigen::MatrixXd &foot_velocities,
-                       Eigen::MatrixXd &foot_accelerations);
+                       Eigen::MatrixXd &foot_accelerations,
+                       const quad_msgs::RobotState::ConstPtr robot_state_msg_);
 
   /**
    * @brief Convert the foot positions and contact schedule into ros messages
@@ -309,7 +310,8 @@ class LocalFootstepPlanner {
    */
   double computeSwingApex(int leg_idx, const Eigen::VectorXd &body_plan,
                           const Eigen::Vector3d &foot_position_prev,
-                          const Eigen::Vector3d &foot_position_next);
+                          const Eigen::Vector3d &foot_position_next,
+                          const quad_msgs::RobotState::ConstPtr robot_state_msg_);
 
   /**
    * @brief Extract foot data from the matrix

@@ -442,7 +442,7 @@ void LocalPlanner::getReference() {
     quad_utils::vectorToEigen(unwrapped_yaw_ref, eig_unwrapped_yaw_ref); // Convert to eigen
     // std::cout << "Unwrapped yaw ref: " << eig_unwrapped_yaw_ref << std::endl;
 
-    
+
     // Insert unwrapped yaw into ref_body_plan_
     ref_body_plan_.col(5) = eig_unwrapped_yaw_ref;
 
@@ -535,7 +535,7 @@ bool LocalPlanner::computeLocalPlan() {
       ref_body_plan_, current_foot_positions_world_,
       current_foot_velocities_world_, first_element_duration_,
       past_footholds_msg_, foot_positions_world_, foot_velocities_world_,
-      foot_accelerations_world_);
+      foot_accelerations_world_, robot_state_msg_);
 
   // Transform the new foot positions into the body frame for body planning
   local_footstep_planner_->getFootPositionsBodyFrame(

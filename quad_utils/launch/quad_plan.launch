@@ -11,6 +11,9 @@
     <!-- Define namespaces for each robot -->
     <arg name="namespace_1" default="robot_1" />
     <arg name="namespace_2" default="robot_2" />
+    
+    <!-- Reload global params s.t. goal state can be reinitiated here -->
+    <rosparam command="load" file="$(find global_body_planner)/global_body_planner.yaml" />
 
     <group ns="$(arg namespace_1)">
         <include file="$(find quad_utils)/launch/planning.launch">

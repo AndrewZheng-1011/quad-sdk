@@ -187,7 +187,7 @@ void LocalFootstepPlanner::computeFootPlan(
     double first_element_duration,
     quad_msgs::MultiFootState& past_footholds_msg,
     Eigen::MatrixXd& foot_positions, Eigen::MatrixXd& foot_velocities,
-    Eigen::MatrixXd& foot_accelerations) {
+    Eigen::MatrixXd& foot_accelerations, const quad_msgs::RobotState::ConstPtr robot_state_msg_) {
   // Loop through each foot to compute the new footholds
   for (int j = 0; j < num_feet_; j++) {
     // std::cout << "contact schedule size: " << contact_schedule.size()
@@ -276,7 +276,7 @@ void LocalFootstepPlanner::computeFootPlan(
             double diff = (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm();
             // std::cout << "Diff: " << diff << std::endl;
             if (diff > 0.05) {
-              ROS_WARN("High angular velocity touch difference!");
+              // ROS_WARN("High angular velocity touch difference!");
               // std::cout << "Difference is: " << (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm() << std::endl;
               // std::cout << "ref_body_ang_vel_touchdown: " << ref_body_ang_vel_touchdown << std::endl;
             }
@@ -393,7 +393,7 @@ void LocalFootstepPlanner::computeFootPlan(
 
       // Compute the swing apex
       swing_apex = computeSwingApex(
-          j, body_plan_mid_air, foot_position_prev_nominal, foot_position_next);
+          j, body_plan_mid_air, foot_position_prev_nominal, foot_position_next, robot_state_msg_);
 
       // Update the memory, we borrow the past_footholds_msg since its velocity
       // is unused
@@ -479,7 +479,7 @@ void LocalFootstepPlanner::computeFootPlan(
           // Compute the swing apex
           swing_apex =
               computeSwingApex(j, body_plan_mid_air, foot_position_prev_nominal,
-                               foot_position_next);
+                               foot_position_next, robot_state_msg_);
         }
 
         // Compute the period index of plan and current states
@@ -764,13 +764,25 @@ Eigen::Vector3d LocalFootstepPlanner::welzlMinimumCircle(
 double LocalFootstepPlanner::computeSwingApex(
     int leg_idx, const Eigen::VectorXd& body_plan,
     const Eigen::Vector3d& foot_position_prev,
-    const Eigen::Vector3d& foot_position_next) {
+    const Eigen::Vector3d& foot_position_next, 
+    const quad_msgs::RobotState::ConstPtr robot_state_msg_) {
   // Compute hip height
   Eigen::Matrix4d g_world_legbase;
   quadKD_->worldToLegbaseFKWorldFrame(leg_idx, body_plan.segment(0, 3),
                                       body_plan.segment(3, 3), g_world_legbase);
   double hip_height = g_world_legbase(2, 3);
-  double max_extension = 0.30; // Original value: 0.35
+  double max_extension, pos_world_x, pos_world_y;
+
+  pos_world_x = robot_state_msg_->body.pose.position.x;
+  pos_world_y = robot_state_msg_->body.pose.position.y;
+
+  if (pos_world_x >= -5.0 && pos_world_x <= -1.0 && pos_world_y >= -2 && pos_world_y <= 0) {
+    // std::cout << "switching" << std::endl;
+    max_extension = 0.10;
+  }
+  else {
+    max_extension = 0.35; // Original value: 0.35
+  }
 
   // Compute swing apex
   double swing_apex =
