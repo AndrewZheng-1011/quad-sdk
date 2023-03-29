@@ -145,6 +145,7 @@ void LocalFootstepPlanner::cubicHermiteSpline(double pos_prev, double vel_prev,
   std::cout << "next pos: " << pos_next << std::endl;
   std::cout << "next vel: " << vel_next << std::endl;
   */
+  // std::cout << "Duration of swing: " << duration << std::endl; // 0.09 or .045 for 0.36 swing duration
 
   double t = phase * duration;
   double t2 = t * t;
@@ -776,11 +777,12 @@ double LocalFootstepPlanner::computeSwingApex(
   pos_world_x = robot_state_msg_->body.pose.position.x;
   pos_world_y = robot_state_msg_->body.pose.position.y;
 
-  if (pos_world_x >= -5.0 && pos_world_x <= -1.0 && pos_world_y >= -2 && pos_world_y <= 0) {
+  if (pos_world_x >= -5.0 && pos_world_x <= -1.25 && pos_world_y >= -2 && pos_world_y <= 0) { // [-5,-1], [-2,0]
     // std::cout << "switching" << std::endl;
     max_extension = 0.10;
-  }
-  else {
+  } else if (pos_world_x >= -1.1 && pos_world_x <= 1.6 && pos_world_y >= -2 && pos_world_y <= 0) {
+    max_extension = 0.05;
+  } else {
     max_extension = 0.35; // Original value: 0.35
   }
 

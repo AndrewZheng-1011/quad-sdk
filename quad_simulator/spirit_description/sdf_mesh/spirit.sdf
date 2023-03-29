@@ -1253,7 +1253,7 @@ SOFTWARE.
       <parent>lower3</parent>
     </joint>
 
-    <include>
+    <!-- <include>
       <uri>model://cmu_text</uri>
       <pose>0 0 0 0 0 0</pose>
     </include>
@@ -1261,7 +1261,7 @@ SOFTWARE.
     <joint name="cmu_text" type="fixed">
       <child>cmu_text::text</child>
       <parent>body</parent>
-    </joint>
+    </joint> -->
 
     <!-- Publish imu sensor readings -->
     <include>

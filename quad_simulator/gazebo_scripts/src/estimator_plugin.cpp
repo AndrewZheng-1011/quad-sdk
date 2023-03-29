@@ -59,7 +59,7 @@ void QuadEstimatorGroundTruth::OnUpdate() {
   // Extract all relevant information from simulator
   physics::LinkPtr body_link = model_->GetChildLink("body");
 
-  ignition::math::Vector3d toe_offset(0.206, 0, 0);
+  ignition::math::Vector3d toe_offset(0.306, 0, 0); // Original: 0.206, 0, 0
 
   physics::LinkPtr lower0 = model_->GetChildLink("lower0");
   physics::LinkPtr lower1 = model_->GetChildLink("lower1");

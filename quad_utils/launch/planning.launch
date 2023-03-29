@@ -6,9 +6,11 @@
     <arg name="robot_type" default="spirit" />
     <arg name="leaping" default="true" />
     <arg name="ac" default="false" />
+    <arg name="goal_plan" default=""/>
 
     <include file="$(find quad_utils)/launch/load_robot_params.launch">
         <arg name="robot_type" value="$(arg robot_type)" />
+        <arg name="goal_plan" value="$(arg goal_plan)" />
     </include>
 
     <!-- Launch the node to publish the global body plan -->

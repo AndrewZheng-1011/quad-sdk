@@ -2,10 +2,10 @@ global_body_planner:
   h_max: 0.375                            # Maximum height of leg base, m
   h_min: 0.075                            # Minimum ground clearance of body corners, m
   h_nom: 0.3                              # Nominal ground clearance of body, m
-  v_max: 0.8 # 2.0                              # Maximum robot velocity, m/s
-  v_nom: 0.25 # 0.75                            # Nominal velocity, m/s (used during connect function)
-  robot_l: 0.32                            # Length of robot body, m | Original: 0.3
-  robot_w: 0.33                            # Width of robot body, m | Original: 0.3
+  v_max: 0.25 # 2.0                              # Maximum robot velocity, m/s
+  v_nom: 0.175 # 0.75                            # Nominal velocity, m/s (used during connect function) | 0.19
+  robot_l: 0.34                            # Length of robot body, m | 0.32
+  robot_w: 0.34                            # Width of robot body, m | 0.31
   robot_h: 0.05                           # Vertical distance between leg base and bottom of robot, m
   mass: 13.0                              # Robot mass, kg
   grf_min: 4.0                            # Minimum GRF in units of body weight (only used for sampling)
@@ -26,7 +26,7 @@ offline_global_body_planner:
 
 local_footstep_planner:
   hip_clearance: 0.1
-  foothold_search_radius: 0.25
+  foothold_search_radius: 0.15 # 0.2
 
 nmpc_controller:
   body:

@@ -446,6 +446,15 @@ void LocalPlanner::getReference() {
     // Insert unwrapped yaw into ref_body_plan_
     ref_body_plan_.col(5) = eig_unwrapped_yaw_ref;
 
+    // Position filter for yaw ref = 0 | TODO: DELETE LATER
+    double world_pos_x = robot_state_msg_->body.pose.position.x;
+    double world_pos_y = robot_state_msg_->body.pose.position.y;
+    if (world_pos_x >= -1.5 && world_pos_x <= 1 && world_pos_y >= -2 && world_pos_y <= 0) {
+      ref_body_plan_.col(5).setZero();
+    }
+
+    
+
     // Update current state with unwrapped yaw
     float diff_curr_state = current_state_(5) - prev_unwrapped_yaw;
     float quotient_curr_state = round(diff_curr_state/(2*M_PI));
@@ -484,8 +493,6 @@ void LocalPlanner::getReference() {
       foot_positions_world_.row(i) = current_foot_positions_world_;
     }
   } else {
-    // Only shift the foot position if it's a solve for a new plan index
-    // TODO (AZ): GET FOOT PoSITION PRINT OUT
     if (plan_index_diff_ > 0) {
       body_plan_.topRows(N_ - 1) = body_plan_.bottomRows(N_ - 1);
       grf_plan_.topRows(N_ - 2) = grf_plan_.bottomRows(N_ - 2);

@@ -946,7 +946,7 @@ SOFTWARE.
     <origin xyz="0.206 0 -0.0"/>
     <dynamics damping="0.0" friction="0.0"/>
   </joint>
-  <link name="text_right">
+  <!-- <link name="text_right">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
@@ -981,6 +981,6 @@ SOFTWARE.
     <parent link="body"/>
     <child link="text_left"/>
     <origin xyz="-0.04 0 -0.005" rpy="0 0 3.14159"/>
-  </joint>
+  </joint> -->
   
 </robot>
