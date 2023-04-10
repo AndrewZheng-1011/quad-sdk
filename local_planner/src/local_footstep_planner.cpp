@@ -145,7 +145,8 @@ void LocalFootstepPlanner::cubicHermiteSpline(double pos_prev, double vel_prev,
   std::cout << "next pos: " << pos_next << std::endl;
   std::cout << "next vel: " << vel_next << std::endl;
   */
-  // std::cout << "Duration of swing: " << duration << std::endl; // 0.09 or .045 for 0.36 swing duration
+  // std::cout << "Duration of swing: " << duration << std::endl; // 0.09 or
+  // .045 for 0.36 swing duration
 
   double t = phase * duration;
   double t2 = t * t;
@@ -188,7 +189,8 @@ void LocalFootstepPlanner::computeFootPlan(
     double first_element_duration,
     quad_msgs::MultiFootState& past_footholds_msg,
     Eigen::MatrixXd& foot_positions, Eigen::MatrixXd& foot_velocities,
-    Eigen::MatrixXd& foot_accelerations, const quad_msgs::RobotState::ConstPtr robot_state_msg_) {
+    Eigen::MatrixXd& foot_accelerations,
+    const quad_msgs::RobotState::ConstPtr robot_state_msg_) {
   // Loop through each foot to compute the new footholds
   for (int j = 0; j < num_feet_; j++) {
     // std::cout << "contact schedule size: " << contact_schedule.size()
@@ -255,11 +257,14 @@ void LocalFootstepPlanner::computeFootPlan(
         hip_position_midstance = welzlMinimumCircle(P, R);
 
         // Get touchdown information for body state
-        // std::cout << "Body plan row: " << body_plan.rows() << std::endl; // Row: 26
-        // std::cout << "Body plan col: " << body_plan.cols() << std::endl; // Col: 12
-        body_vel_touchdown = body_plan.block<1, 3>(i, 6); // Col 6 -> Velocities xyz
+        // std::cout << "Body plan row: " << body_plan.rows() << std::endl; //
+        // Row: 26 std::cout << "Body plan col: " << body_plan.cols() <<
+        // std::endl; // Col: 12
+        body_vel_touchdown =
+            body_plan.block<1, 3>(i, 6);  // Col 6 -> Velocities xyz
         ref_body_vel_touchdown = ref_body_plan.block<1, 3>(i, 6);
-        body_ang_vel_touchdown = body_plan.block<1, 3>(i, 9); // Col 9 -> Ang velocities xyz
+        body_ang_vel_touchdown =
+            body_plan.block<1, 3>(i, 9);  // Col 9 -> Ang velocities xyz
         ref_body_ang_vel_touchdown = ref_body_plan.block<1, 3>(i, 9);
 
         // Compute dynamic shift
@@ -271,18 +276,23 @@ void LocalFootstepPlanner::computeFootPlan(
         // Ref: Highly Dynamic Quadruped Locomotion via Whole-Body Impulse
         // Control and Model Predictive Control (Centrifugal force and capture
         // point)
-        if (j==0) { // Look @ only 1 foot
-          // std::cout << "Difference is: " << (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm() << std::endl;
+        if (j == 0) {  // Look @ only 1 foot
+          // std::cout << "Difference is: " <<
+          // (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm()
+          // << std::endl;
           if (!first_ref_plan) {
-            double diff = (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm();
+            double diff =
+                (ref_body_ang_vel_touchdown - prev_ref_body_ang_vel_touchdown)
+                    .norm();
             // std::cout << "Diff: " << diff << std::endl;
             if (diff > 0.05) {
               // ROS_WARN("High angular velocity touch difference!");
-              // std::cout << "Difference is: " << (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm() << std::endl;
-              // std::cout << "ref_body_ang_vel_touchdown: " << ref_body_ang_vel_touchdown << std::endl;
+              // std::cout << "Difference is: " <<
+              // (ref_body_ang_vel_touchdown-prev_ref_body_ang_vel_touchdown).norm()
+              // << std::endl; std::cout << "ref_body_ang_vel_touchdown: " <<
+              // ref_body_ang_vel_touchdown << std::endl;
             }
-          }
-          else{
+          } else {
             first_ref_plan = false;
           }
           prev_ref_body_ang_vel_touchdown = ref_body_ang_vel_touchdown;
@@ -300,21 +310,24 @@ void LocalFootstepPlanner::computeFootPlan(
 
         // Combine these measures to get the nominal foot position and grab
         // correct height
-        if (j==0) {
+        if (j == 0) {
           // TODO (AZ) : Check numbers here
-          // std::cout << "hip_position_midstance: " << hip_position_midstance << std::endl;
-          // std::cout << "centrifugal: " << centrifugal << std::endl;
-          // std::cout << "vel_tracking: " << vel_tracking << std::endl;
+          // std::cout << "hip_position_midstance: " << hip_position_midstance
+          // << std::endl; std::cout << "centrifugal: " << centrifugal <<
+          // std::endl; std::cout << "vel_tracking: " << vel_tracking <<
+          // std::endl;
         }
         foot_position_raibert =
             hip_position_midstance + centrifugal + vel_tracking;
         foot_position_nominal = foot_position_raibert;
         // if (j == 0) {
-        //   std::cout << "foot_position_nominal feet " << j << ": " << foot_position_nominal << std::endl;
+        //   std::cout << "foot_position_nominal feet " << j << ": " <<
+        //   foot_position_nominal << std::endl;
         // }
         grid_map::Position foot_position_grid_map = {foot_position_nominal.x(),
                                                      foot_position_nominal.y()};
-        // TODO (AZ): Use if statement to output footposition of Raibert for foot j
+        // TODO (AZ): Use if statement to output footposition of Raibert for
+        // foot j
 
         if (!terrain_grid_.isInside(foot_position_grid_map)) {
           ROS_WARN(
@@ -336,12 +349,15 @@ void LocalFootstepPlanner::computeFootPlan(
         foot_position = getNearestValidFoothold(foot_position_nominal,
                                                 foot_position_previous);
         // foot_position = foot_position_nominal;
-        // std::cout << "Horizon " << i << " prev foothold:\n" << foot_position_previous << std::endl;
-        // std::cout << "Horizon " << i << " new foothold:\n" << foot_position << std::endl;
-        if (j==0) {
+        // std::cout << "Horizon " << i << " prev foothold:\n" <<
+        // foot_position_previous << std::endl; std::cout << "Horizon " << i <<
+        // " new foothold:\n" << foot_position << std::endl;
+        if (j == 0) {
           if ((foot_position - foot_position_previous).norm() > 0.025) {
-          // std::cout << "Euclidean distance between new pos and previous position: " << (foot_position-foot_position_previous).norm() << std::endl;
-          // ROS_WARN("Previous foot position and new foot position distance exceed 0.025");
+            // std::cout << "Euclidean distance between new pos and previous
+            // position: " << (foot_position-foot_position_previous).norm() <<
+            // std::endl; ROS_WARN("Previous foot position and new foot position
+            // distance exceed 0.025");
           }
         }
 
@@ -393,8 +409,9 @@ void LocalFootstepPlanner::computeFootPlan(
       body_plan_mid_air = body_plan.row(mid_air);
 
       // Compute the swing apex
-      swing_apex = computeSwingApex(
-          j, body_plan_mid_air, foot_position_prev_nominal, foot_position_next, robot_state_msg_);
+      swing_apex =
+          computeSwingApex(j, body_plan_mid_air, foot_position_prev_nominal,
+                           foot_position_next, robot_state_msg_);
 
       // Update the memory, we borrow the past_footholds_msg since its velocity
       // is unused
@@ -765,7 +782,7 @@ Eigen::Vector3d LocalFootstepPlanner::welzlMinimumCircle(
 double LocalFootstepPlanner::computeSwingApex(
     int leg_idx, const Eigen::VectorXd& body_plan,
     const Eigen::Vector3d& foot_position_prev,
-    const Eigen::Vector3d& foot_position_next, 
+    const Eigen::Vector3d& foot_position_next,
     const quad_msgs::RobotState::ConstPtr robot_state_msg_) {
   // Compute hip height
   Eigen::Matrix4d g_world_legbase;
@@ -777,14 +794,17 @@ double LocalFootstepPlanner::computeSwingApex(
   pos_world_x = robot_state_msg_->body.pose.position.x;
   pos_world_y = robot_state_msg_->body.pose.position.y;
 
-  if (pos_world_x >= -5.0 && pos_world_x <= -1.25 && pos_world_y >= -2 && pos_world_y <= 0) { // [-5,-1], [-2,0]
-    // std::cout << "switching" << std::endl;
-    max_extension = 0.10;
-  } else if (pos_world_x >= -1.1 && pos_world_x <= 1.6 && pos_world_y >= -2 && pos_world_y <= 0) {
-    max_extension = 0.05;
-  } else {
-    max_extension = 0.35; // Original value: 0.35
-  }
+  // if (pos_world_x >= -5.0 && pos_world_x <= -1.25 && pos_world_y >= -2 &&
+  // pos_world_y <= 0) { // [-5,-1], [-2,0]
+  //   // std::cout << "switching" << std::endl;
+  //   max_extension = 0.10;
+  // } else if (pos_world_x >= -1.1 && pos_world_x <= 1.6 && pos_world_y >= -2
+  // && pos_world_y <= 0) {
+  //   max_extension = 0.05;
+  // } else {
+  //   max_extension = 0.35; // Original value: 0.35
+  // }
+  max_extension = 0.35;
 
   // Compute swing apex
   double swing_apex =

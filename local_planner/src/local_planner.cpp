@@ -1,6 +1,8 @@
 #include "local_planner/local_planner.h"
-#include <typeinfo>
+
 #include <math.h>
+
+#include <typeinfo>
 
 Eigen::IOFormat CleanFmt(4, 0, ", ", "\n", "[", "]");
 
@@ -227,14 +229,16 @@ void LocalPlanner::getReference() {
     past_footholds_msg_ = robot_state_msg_->feet;
     // std::cout << "type feet: " << typeid(past_footholds_msg_).name()
     // << std::endl; // Type: quad_msg_MultiFootState
-    // std::cout << "feet msg: " << past_footholds_msg_ << std::endl; // Gets position of the current feet state
+    // std::cout << "feet msg: " << past_footholds_msg_ << std::endl; // Gets
+    // position of the current feet state
     past_footholds_msg_.traj_index = current_plan_index_;
     for (int i = 0; i < num_feet_; i++) {
       past_footholds_msg_.feet[i].header = past_footholds_msg_.header;
       past_footholds_msg_.feet[i].traj_index = past_footholds_msg_.traj_index;
     }
 
-    // std::cout << "feet msg after: " << past_footholds_msg_ << std::endl; // Same for global body plan
+    // std::cout << "feet msg after: " << past_footholds_msg_ << std::endl; //
+    // Same for global body plan
 
     // We want to start from a full period when using twist input
     if (use_twist_input_) {
@@ -253,12 +257,15 @@ void LocalPlanner::getReference() {
   // Get plan index, compare with the previous one to check if this is a
   // duplicated solve
   int previous_plan_index = current_plan_index_;
-  // std::cout << "First Element duration before: " << first_element_duration_ << std::endl; // Before: ~ 0.007, 0.017, & 0.027
+  // std::cout << "First Element duration before: " << first_element_duration_
+  // << std::endl; // Before: ~ 0.007, 0.017, & 0.027
   quad_utils::getPlanIndex(initial_timestamp_, dt_, current_plan_index_,
                            first_element_duration_);
-  // std::cout << "First Element duration after: " << first_element_duration_ << std::endl; // After: ~ 0.007, 0.017, & 0.027
+  // std::cout << "First Element duration after: " << first_element_duration_ <<
+  // std::endl; // After: ~ 0.007, 0.017, & 0.027
   plan_index_diff_ = current_plan_index_ - previous_plan_index;
-  // std::cout << "plan_index_diff_ : " << plan_index_diff_ << std::endl; // 0 to 1
+  // std::cout << "plan_index_diff_ : " << plan_index_diff_ << std::endl; // 0
+  // to 1
 
   // TODO (AZ): Look into footstep here
   // Get the current body and foot positions into Eigen
@@ -338,7 +345,7 @@ void LocalPlanner::getReference() {
                            cmd_vel_[1] * sin(current_state_[5]);
     ref_body_plan_(0, 7) = cmd_vel_[0] * sin(current_state_[5]) +
                            cmd_vel_[1] * cos(current_state_[5]);
-    ref_body_plan_(0, 8) = cmd_vel_[2]; // z component velocity
+    ref_body_plan_(0, 8) = cmd_vel_[2];  // z component velocity
     ref_body_plan_(0, 9) = cmd_vel_[3];
     ref_body_plan_(0, 10) = cmd_vel_[4];
     ref_body_plan_(0, 11) = cmd_vel_[5];
@@ -356,7 +363,7 @@ void LocalPlanner::getReference() {
 
     // Integrate to get full body plan (Forward Euler)
     // std::cout << "N_: " << N_ << std::endl;
-    for (int i = 1; i < N_; i++) { // N_ : 26
+    for (int i = 1; i < N_; i++) {  // N_ : 26
       Eigen::VectorXd current_cmd_vel = cmd_vel_;
 
       double yaw = ref_body_plan_(i - 1, 5);
@@ -412,70 +419,72 @@ void LocalPlanner::getReference() {
           ref_body_plan_(i, 0), ref_body_plan_(i, 1));
     }
 
-
     // Unwrap yaw angle for NMPC
     Eigen::VectorXd eig_unwrapped_yaw_ref = ref_body_plan_.col(5);
-    
+
     std::vector<double> wrapped_yaw_ref, unwrapped_yaw_ref;
     quad_utils::eigenToVector(eig_unwrapped_yaw_ref, wrapped_yaw_ref);
 
-    // If first plan, keep nominal yaw, else align initial yaw state with previous horizon's last yaw state 
+    // If first plan, keep nominal yaw, else align initial yaw state with
+    // previous horizon's last yaw state
     if (!first_ref_plan) {
       float diff = wrapped_yaw_ref[0] - prev_unwrapped_yaw;
-      float quotient = round(diff/(2*M_PI));
+      float quotient = round(diff / (2 * M_PI));
       // std::cout << "quotient: " << quotient << std::endl;
       // std::cout << "previous yaw: " << prev_unwrapped_yaw << std::endl;
       // std::cout << "current yaw: " << wrapped_yaw_ref[0] << std::endl;
       // std::cout << "diff: " << diff << std::endl; // 2PI if wrapping
       if (diff > M_PI) {
-        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] - quotient*2*M_PI;
+        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] - quotient * 2 * M_PI;
       } else if (diff < -M_PI) {
-        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] + quotient*2*M_PI;
+        wrapped_yaw_ref[0] = wrapped_yaw_ref[0] + quotient * 2 * M_PI;
       }
       // std::cout << "new current yaw: " << wrapped_yaw_ref[0] << std::endl;
     } else {
       first_ref_plan = false;
-    } 
-    unwrapped_yaw_ref = math_utils::unwrap(wrapped_yaw_ref); // Let math_utils handle unwrapping all yaw state in horizon
+    }
+    unwrapped_yaw_ref = math_utils::unwrap(
+        wrapped_yaw_ref);  // Let math_utils handle unwrapping all yaw state in
+                           // horizon
     prev_unwrapped_yaw = unwrapped_yaw_ref[N_ - 1];
 
-    quad_utils::vectorToEigen(unwrapped_yaw_ref, eig_unwrapped_yaw_ref); // Convert to eigen
+    quad_utils::vectorToEigen(unwrapped_yaw_ref,
+                              eig_unwrapped_yaw_ref);  // Convert to eigen
     // std::cout << "Unwrapped yaw ref: " << eig_unwrapped_yaw_ref << std::endl;
-
 
     // Insert unwrapped yaw into ref_body_plan_
     ref_body_plan_.col(5) = eig_unwrapped_yaw_ref;
 
-    // Position filter for yaw ref = 0 | TODO: DELETE LATER
-    double world_pos_x = robot_state_msg_->body.pose.position.x;
-    double world_pos_y = robot_state_msg_->body.pose.position.y;
-    if (world_pos_x >= -1.5 && world_pos_x <= 1 && world_pos_y >= -2 && world_pos_y <= 0) {
-      ref_body_plan_.col(5).setZero();
-    }
-
-    
+    // // Position filter for yaw ref = 0 | TODO: DELETE LATER
+    // double world_pos_x = robot_state_msg_->body.pose.position.x;
+    // double world_pos_y = robot_state_msg_->body.pose.position.y;
+    // if (world_pos_x >= -10 && world_pos_x <= 1 && world_pos_y >= -2 &&
+    // world_pos_y <= 2) { // x : [-1.5, 1] y: [-2, 0]
+    //   ref_body_plan_.col(5).setZero();
+    // }
 
     // Update current state with unwrapped yaw
     float diff_curr_state = current_state_(5) - prev_unwrapped_yaw;
-    float quotient_curr_state = round(diff_curr_state/(2*M_PI));
+    float quotient_curr_state = round(diff_curr_state / (2 * M_PI));
 
-    if (diff_curr_state > M_PI) { // Not the best solution due to multi-threading
-      current_state_(5) = current_state_(5) - quotient_curr_state*2*M_PI;
-    }
-    else {
-      current_state_(5) = current_state_(5) + quotient_curr_state*2*M_PI;
+    if (diff_curr_state >
+        M_PI) {  // Not the best solution due to multi-threading
+      current_state_(5) = current_state_(5) - quotient_curr_state * 2 * M_PI;
+    } else {
+      current_state_(5) = current_state_(5) + quotient_curr_state * 2 * M_PI;
     }
     // std::cout << "yaw: " << current_state_(5) << std::endl;
-
 
     ref_ground_height_(0) = local_footstep_planner_->getTerrainHeight(
         current_state_(0), current_state_(1));
 
     // Stand if the plan has been tracked
-    // If current state and last of ref plan is the same... than plan is not moving -> go to stand mode
+    // If current state and last of ref plan is the same... than plan is not
+    // moving -> go to stand mode
     if ((current_state_ - ref_body_plan_.bottomRows(1).transpose()).norm() <=
         stand_pos_error_threshold_) {
       control_mode_ = STAND;
+      // ROS_INFO("State converged to goal. Entering control mode stand.");
     }
   }
 
